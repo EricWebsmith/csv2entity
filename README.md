@@ -6,13 +6,15 @@ Date:2011/11/27
 
 By Zhou Weiguang 
 
- 
 
- To view the introduce Video please visit:
+To view the introduce Video please visit:
 
- http://csv2entity.codeplex.com/releases/view/82659#DownloadId=344830
+[https://youtu.be/z3eB05DaQuI](https://youtu.be/z3eB05DaQuI)
 
- 
+## Download
+
+[https://drive.google.com/file/d/0B3C7vxE1atLGYW9DeDJQQmQyOHM/view?usp=sharing](https://drive.google.com/file/d/0B3C7vxE1atLGYW9DeDJQQmQyOHM/view?usp=sharing)
+
 
 ## What is CSV
 
@@ -132,3 +134,4 @@ With Document Generator, you can get the schema of the CSV files or the Excel an
 References
 
 CSV in Wikipedia: http://en.wikipedia.org/wiki/Comma-separated_values
+
