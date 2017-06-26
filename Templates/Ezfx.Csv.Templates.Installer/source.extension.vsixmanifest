@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
+  <Identifier Id="Ezfx.Csv.Installer.Zhou.Weiguang.571b8fb3-dc43-4142-b8ca-255027248702">
+    <Name>Ezfx.Csv.Installer</Name>
+    <Author>Eric Zhou</Author>
+    <Version>1.0.0.15000</Version>
+    <Description xml:space="preserve">Ezfx.Csv.Installer</Description>
+    <Locale>1033</Locale>
+    <MoreInfoUrl>http://csv2entity.codeplex.com/</MoreInfoUrl>
+    <GettingStartedGuide>http://csv2entity.codeplex.com/</GettingStartedGuide>
+    <SupportedProducts>
+      <VisualStudio Version="10.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+        <Edition>Express_All</Edition>
+      </VisualStudio>
+    </SupportedProducts>
+    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+  </Identifier>
+  <References />
+  <Content>
+    <ItemTemplate>ItemTemplates</ItemTemplate>
+  </Content>
+</Vsix>

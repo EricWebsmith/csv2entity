@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>Ezfx Csv Object</Name>
+    <Description>Generate Class via CSV File</Description>
+    <Icon>Ezfx.Csv.ico</Icon>
+    <TemplateID>3e5b38f4-7f88-439d-bbf0-8a9796f5b14f</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <DefaultName>Csv.cs</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+		<References>
+			<Reference>
+				<Assembly>Ezfx.Csv</Assembly>
+			</Reference>
+		</References>
+    <ProjectItem ReplaceParameters="true">Csv.cs</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Ezfx.Csv.Templates, Version=1.0.0.15000, Culture=neutral, PublicKeyToken=d0f4913a4ed3e5e8, Custom=null</Assembly>
+    <FullClassName>Ezfx.Csv.Templates.CSClassWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
