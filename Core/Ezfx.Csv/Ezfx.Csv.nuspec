@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Ezfx.Csv</id>
+    <version>1.0.0.0</version>
+    <title>CSV2Entity</title>
+    <authors>Eric Chow</authors>
+    <owners>Eric Chow</owners>
+    <license type="expression">Apache-2.0</license>
+    <!--<licenseUrl>https://raw.githubusercontent.com/juwikuang/csv2entity/master/licence.txt</licenseUrl>-->
+    <iconUrl>https://raw.githubusercontent.com/juwikuang/csv2entity/master/csv.png</iconUrl>
+    <projectUrl>https://github.com/juwikuang/csv2entity</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Auto Generate CSV Object Class</description>
+    <releaseNotes>Initial</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>CSV Entity C# VB.net</tags>
+  </metadata>
+  <files>
+    <file src="bin/Release/Ezfx.Csv.dll" target="lib/net46" />
+  </files>
+</package>
