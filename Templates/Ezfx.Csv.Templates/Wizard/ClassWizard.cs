@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Linq;
 
-namespace Ezfx.Csv.Templates
+namespace Ezfx.Csv.ItemWizards
 {
     public abstract class ClassWizard:IWizard
     {

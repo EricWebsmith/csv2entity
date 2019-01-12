@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TemplateWizard;
 
-namespace Ezfx.Csv.Templates
+namespace Ezfx.Csv.ItemWizards
 {
     public class VBClassWizard : ClassWizard, IWizard
     {

@@ -62,7 +62,7 @@ namespace Ezfx.Csv
                 PropertyInfo pi = GetPropertyInfo(pis, i);
                 if (pi != null)
                 {
-                    pi.SetValue(result, dataRow[i].ToString());
+                    pi.SetValue(result, dataRow[i].ToString(), null);
                 }
             }
             return result;
@@ -79,7 +79,7 @@ namespace Ezfx.Csv
                 PropertyInfo pi = GetPropertyInfo(pis, dataRow.Table.Columns[i].ColumnName);
                 if (pi != null)
                 {
-                    pi.SetValue(result, dataRow[i].ToString());
+                    pi.SetValue(result, dataRow[i].ToString(),null);
                 }
             }
             return result;
