@@ -34,3 +34,6 @@
 /Tools/Ezfx.Csv.DocumentGenerator/obj/x86
 /Templates/Ezfx.Csv2Entity.VSIX/obj
 /Templates/Ezfx.Csv2Entity.VSIX/bin
+/Ezfx.Csv.Tools.DocumentGenerator/bin/Debug
+/Ezfx.Csv.Tools.DocumentGenerator/obj
+/packages/NUnit.3.11.0

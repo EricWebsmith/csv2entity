@@ -274,9 +274,18 @@ namespace Ezfx.Csv
                     dt.Columns.Add(titles[i]);
                 }
 
+                string fixedLine = string.Empty;
                 while (!sr.EndOfStream)
                 {
-                    string line = sr.ReadLine();
+                    string line = sr.ReadLine().Trim();
+                    //skip empty lines
+                    if (line == string.Empty)
+                    {
+                        continue;
+                    }
+                    //read lines continuously
+                    int lastDoubleQuote = line.LastIndexOf('"');
+                    { }
                     string[] fields = CsvContext.GetFields(line, delimiter);
                     DataRow dr = dt.NewRow();
                     for (int i = 0; i < fields.Length && i < dt.Columns.Count; i++)

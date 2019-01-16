@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Ezfx.Csv</id>
+    <version>1.0.0.0</version>
+    <title>CSV2Entity</title>
+    <authors>Eric Chow</authors>
+    <owners>Eric Chow</owners>
+    <license type="expression">Apache-2.0</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <!--<licenseUrl>https://raw.githubusercontent.com/juwikuang/csv2entity/master/licence.txt</licenseUrl>-->
+    <iconUrl>https://raw.githubusercontent.com/juwikuang/csv2entity/master/csv.png</iconUrl>
+    <projectUrl>https://github.com/juwikuang/csv2entity</projectUrl>
+    <repository url="https://github.com/juwikuang/csv2entity"></repository>
+    <description>Auto Generate CSV Object Class. To add CSV Object Classes based on the CSV file you provided, Please Also install the VSIX(Visual Studio Extension) at this link https://marketplace.visualstudio.com/items?itemName=EricZhou.csv2entity </description>
+    <summary>Auto Generate CSV Object Class. Play with CSVs like EntityFramework.</summary>
+    <releaseNotes>The class has been under development for many years, finally, I released it.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>CSV Entity C# VB.net</tags>
+  </metadata>
+  <files>
+    <file src="bin/Release/net35/Ezfx.Csv.dll" target="lib/net35" />
+    <file src="bin/Release/net4/Ezfx.Csv.dll" target="lib/net4" />
+    <file src="bin/Release/net45/Ezfx.Csv.dll" target="lib/net45" />
+    <file src="bin/Release/net451/Ezfx.Csv.dll" target="lib/net451" />
+    <file src="bin/Release/net46/Ezfx.Csv.dll" target="lib/net46" />
+    <file src="bin/Release/net461/Ezfx.Csv.dll" target="lib/net461" />
+    <file src="bin/Release/net462/Ezfx.Csv.dll" target="lib/net462" />
+    <file src="bin/Release/net47/Ezfx.Csv.dll" target="lib/net47" />
+    <file src="bin/Release/net471/Ezfx.Csv.dll" target="lib/net471" />
+    <file src="bin/Release/net472/Ezfx.Csv.dll" target="lib/net472" />
+  </files>
+</package>
