@@ -1,0 +1,10 @@
+D:\projects\csv2entity\Samples\LanguagesVB4\bin\Release\LanguagesVB4.exe
+D:\projects\csv2entity\Samples\LanguagesVB4\bin\Release\LanguagesVB4.pdb
+D:\projects\csv2entity\Samples\LanguagesVB4\bin\Release\LanguagesVB4.xml
+D:\projects\csv2entity\Samples\LanguagesVB4\obj\x86\Release\LanguagesVB4.vbprojAssemblyReference.cache
+D:\projects\csv2entity\Samples\LanguagesVB4\obj\x86\Release\LanguagesVB4.Resources.resources
+D:\projects\csv2entity\Samples\LanguagesVB4\obj\x86\Release\LanguagesVB4.vbproj.GenerateResource.cache
+D:\projects\csv2entity\Samples\LanguagesVB4\obj\x86\Release\LanguagesVB4.vbproj.CoreCompileInputs.cache
+D:\projects\csv2entity\Samples\LanguagesVB4\obj\x86\Release\LanguagesVB4.exe
+D:\projects\csv2entity\Samples\LanguagesVB4\obj\x86\Release\LanguagesVB4.xml
+D:\projects\csv2entity\Samples\LanguagesVB4\obj\x86\Release\LanguagesVB4.pdb
