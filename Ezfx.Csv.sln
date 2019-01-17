@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ezfx.Csv.Templates.CsvClass
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Ezfx.Csv.Templates.CsvClass.VB", "Templates\Ezfx.Csv.Templates.CsvClass.VB\Ezfx.Csv.Templates.CsvClass.VB.vbproj", "{18F64D83-79DD-48DD-B0F1-A66B69B85A20}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ProgrammingLanguagePopularity", "Samples\ProgrammingLanguagePopularity\ProgrammingLanguagePopularity.vbproj", "{263776CF-9C29-4A8D-9988-5CE03AF45417}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Languages", "Samples\Languages\Languages.csproj", "{A259E4CB-2BD1-4EFF-954F-215303B5C20F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ezfx.Csv.DocumentGenerator", "Tools\Ezfx.Csv.DocumentGenerator\Ezfx.Csv.DocumentGenerator.csproj", "{A7CD79E2-71BB-4D2B-AB59-27806393D5D5}"
@@ -44,6 +42,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ezfx.Csv2Entity.VSIX", "Templates\Ezfx.Csv2Entity.VSIX\Ezfx.Csv2Entity.VSIX.csproj", "{9CC3B62F-5619-4C6E-A5FF-2B07903AD1C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ezfx.Csv.Tools.DocumentGenerator", "Ezfx.Csv.Tools.DocumentGenerator\Ezfx.Csv.Tools.DocumentGenerator.csproj", "{B6CB2F32-382C-4A06-A641-2F245175B15E}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ProgrammingLanguagePopularity", "Samples\ProgrammingLanguagePopularity\ProgrammingLanguagePopularity.vbproj", "{263776CF-9C29-4A8D-9988-5CE03AF45417}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,16 +105,6 @@ Global
 		{18F64D83-79DD-48DD-B0F1-A66B69B85A20}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{18F64D83-79DD-48DD-B0F1-A66B69B85A20}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{18F64D83-79DD-48DD-B0F1-A66B69B85A20}.Release|x86.ActiveCfg = Release|Any CPU
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|x86.ActiveCfg = Debug|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|x86.Build.0 = Debug|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|Any CPU.ActiveCfg = Release|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|Mixed Platforms.Build.0 = Release|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|x86.ActiveCfg = Release|x86
-		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|x86.Build.0 = Release|x86
 		{A259E4CB-2BD1-4EFF-954F-215303B5C20F}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{A259E4CB-2BD1-4EFF-954F-215303B5C20F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{A259E4CB-2BD1-4EFF-954F-215303B5C20F}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -189,6 +179,16 @@ Global
 		{B6CB2F32-382C-4A06-A641-2F245175B15E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B6CB2F32-382C-4A06-A641-2F245175B15E}.Release|x86.ActiveCfg = Release|Any CPU
 		{B6CB2F32-382C-4A06-A641-2F245175B15E}.Release|x86.Build.0 = Release|Any CPU
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|x86.ActiveCfg = Debug|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Debug|x86.Build.0 = Debug|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|Any CPU.ActiveCfg = Release|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|Mixed Platforms.Build.0 = Release|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|x86.ActiveCfg = Release|x86
+		{263776CF-9C29-4A8D-9988-5CE03AF45417}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,7 +199,6 @@ Global
 		{B3DFE103-2AB8-43BB-9B26-4643754D1D97} = {B471C7B6-FADC-4CBE-923E-F907D1621DA4}
 		{111EB207-8CF1-42CB-B7CC-FB5B05A5E6F5} = {B471C7B6-FADC-4CBE-923E-F907D1621DA4}
 		{18F64D83-79DD-48DD-B0F1-A66B69B85A20} = {B471C7B6-FADC-4CBE-923E-F907D1621DA4}
-		{263776CF-9C29-4A8D-9988-5CE03AF45417} = {A422916A-DF0C-4511-B865-130E0A9DAB67}
 		{A259E4CB-2BD1-4EFF-954F-215303B5C20F} = {A422916A-DF0C-4511-B865-130E0A9DAB67}
 		{A7CD79E2-71BB-4D2B-AB59-27806393D5D5} = {E0B876AE-395C-4CBE-BDE4-E1B666E61CE4}
 		{8E7C3872-7D44-4BFF-AB4A-0C812AEC769D} = {A422916A-DF0C-4511-B865-130E0A9DAB67}
@@ -207,6 +206,7 @@ Global
 		{0B8A26EB-25DE-4CA4-BBF0-57BCD86AF922} = {52ABAC46-7732-498D-B8A1-1FF8A34202C5}
 		{9CC3B62F-5619-4C6E-A5FF-2B07903AD1C2} = {B471C7B6-FADC-4CBE-923E-F907D1621DA4}
 		{B6CB2F32-382C-4A06-A641-2F245175B15E} = {E0B876AE-395C-4CBE-BDE4-E1B666E61CE4}
+		{263776CF-9C29-4A8D-9988-5CE03AF45417} = {A422916A-DF0C-4511-B865-130E0A9DAB67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E1D28AC1-04C7-4EAF-ACD7-782C0914D1CA}
