@@ -1,10 +1,11 @@
 # CSV2Entity
 
-Version: draft
 
-Date:2011/11/27
+[![ericfeed MyGet Build Status](https://www.myget.org/BuildSource/Badge/ericfeed?identifier=f8245f2f-8154-494a-be4e-de175e194be5)](https://www.myget.org/)
 
-By Zhou Weiguang 
+[![Build status](https://ci.appveyor.com/api/projects/status/637a70iwpkcusjab?svg=true)](https://ci.appveyor.com/project/juwikuang/csv2entity)
+
+[![Build Status](https://travis-ci.org/juwikuang/csv2entity.svg?branch=master)](https://travis-ci.org/juwikuang/csv2entity)
 
 
 To view the introduce Video please visit:
