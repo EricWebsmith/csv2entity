@@ -26,7 +26,6 @@ namespace Ezfx.Csv
             {
                 config = new CsvConfig();
 
-                //object[] attrs = typeof(T).GetCustomAttributes(typeof(CsvObjectAttribute), false);
                 if (typeof(T).IsDefined(typeof(CsvObjectAttribute), false))
                 {
                     CsvObjectAttribute attr = (CsvObjectAttribute)(typeof(T).GetCustomAttributes(typeof(CsvObjectAttribute), false)[0]);

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Ezfx.Csv.Tester
+﻿namespace Ezfx.Csv.Tester
 {
     //Year,Make,Model,Length
     [CsvObject(CodePage=936,Description="",HasHeader=true,MappingType=CsvMappingType.Order)]
