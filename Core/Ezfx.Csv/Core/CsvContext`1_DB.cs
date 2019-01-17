@@ -13,7 +13,7 @@ namespace Ezfx.Csv
         {
             if (path.GetIsOleDb())
             {
-                DataTable table = CsvContext.GetDataTable(path, tableName);
+                DataTable table = GetDataTable(path, tableName);
                 return ReadDataTable<T>(table, config);
             }
             else

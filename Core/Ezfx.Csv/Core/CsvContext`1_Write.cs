@@ -22,7 +22,7 @@ namespace Ezfx.Csv
                 List<string> titles = new List<string>();
                 foreach (CsvPropertyInfo csvPi in csvPropertyInfos)
                 {
-                    titles.Add(CsvContext.FixField(csvPi.Attribute.Name, config.Delimiter));
+                    titles.Add(FixField(csvPi.Attribute.Name, config.Delimiter));
                     //sb.Append(CsvContext.FixField(csvPi.Attribute.Name, config.Delimiter) + config.Delimiter);
                 }
                 sb.AppendLine(string.Join(config.Delimiter, titles.ToArray()));

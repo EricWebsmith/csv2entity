@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Ezfx.Csv.ItemWizards
+﻿namespace Ezfx.Csv.ItemWizards
 {
     public static class CsvColumnExtensions
     {
@@ -25,20 +20,11 @@ namespace Ezfx.Csv.ItemWizards
         public static string ToVBCode(this CsvColumn col)
         {
             return string.Format(
-                //"\r\n" +
-                //"    Private _{0} As String\r\n" +
                 "    ''' <summary>\r\n" +
                 "    ''' {1}, {0}\r\n" +
                 "    ''' </summary>\r\n" +
                 "    <SystemCsvColumn(Alias:=\"\", Ordinal:={1}, Name:=\"{0}\")> _\r\n" +
                 "    Public Property {0}() As String\r\n" +
-                //"        Get\r\n" +
-                //"            Return _{0}\r\n" +
-                //"        End Get\r\n" +
-                //"        Set(ByVal value As String)\r\n" +
-                //"            _{0} = value\r\n" +
-                //"        End Set\r\n" +
-                //"    End Property\r\n" +
                 "\r\n",
                 CsvContext.ToVariant(col.Name),
                 col.Ordinal
