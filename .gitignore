@@ -19,8 +19,8 @@
 /Samples/Languages/obj/x86
 /Samples/ProgrammingLanguagePopularity/bin
 /Samples/ProgrammingLanguagePopularity/obj/x86
-/Samples.VB/LanguageConfigSampleVB/bin
-/Samples.VB/LanguageConfigSampleVB/obj/x86
+/Samples/LanguageConfigSampleVB/bin
+/Samples/LanguageConfigSampleVB/obj/x86
 /Templates/Ezfx.Csv.Templates/bin
 /Templates/Ezfx.Csv.Templates/obj
 /Templates/Ezfx.Csv.Templates.CsvClass.CS/bin
@@ -37,3 +37,4 @@
 /Ezfx.Csv.Tools.DocumentGenerator/bin/Debug
 /Ezfx.Csv.Tools.DocumentGenerator/obj
 /packages/NUnit.3.11.0
+/Ezfx.Csv.Tools.DocumentGenerator/bin/Release
