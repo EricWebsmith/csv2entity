@@ -5,6 +5,15 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/637a70iwpkcusjab?svg=true)](https://ci.appveyor.com/project/juwikuang/csv2entity)
 [![Build Status](https://dev.azure.com/juwikuang/CSV2Entity/_apis/build/status/juwikuang.csv2entity?branchName=master)](https://dev.azure.com/juwikuang/CSV2Entity/_build/latest?definitionId=1?branchName=master)
 
+## Install
+
+### Install Core from Nuget
+
+* [CSV2Entity](https://www.nuget.org/packages/Ezfx.Csv) [![Nuget](http://img.shields.io/nuget/v/Ezfx.Csv.svg?maxAge=10800)](https://www.nuget.org/packages/Ezfx.Csv/)
+
+### Instial Visual Studio Extension from marketplace
+
+https://marketplace.visualstudio.com/items?itemName=EricZhou.csv2entity
 
 To view the introduce Video please visit:
 
@@ -77,18 +86,18 @@ So, do we need to create CSV classes manually? Of cause not. So I developed the 
 To Generate CSV Classes, you have to install the VSIX file:
 
       
-![](./pics/vsix.png)
+![VSIX file](https://github.com/juwikuang/csv2entity/raw/master/pics/vsix.png)
  
 
 After the installation a new template called EZFX CSV Class will be displayed in your Visual Studio 2010 both in language VB and C#.
 
 Add VB Class:
 
-![](./pics/addvb.png)
+![VB](https://github.com/juwikuang/csv2entity/raw/master/pics/addvb.png)
 
 Add C# Class:
 
-![](./pics/addcs.png)
+![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/addcs.png)
 
 After click of add, a CSV Generate Wizard Window will be displayed, you can select a CSV file by click the browse button, this Wizard support Excel(xls, xlsx) and Access files(mdb, accdb), too. You specify the encoding for the CSV file and table name for Excel and Access file.
 
@@ -98,11 +107,11 @@ The following is the generated file:
 
 The C# file:
 
-![](./pics/csclass.png)
+![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/csclass.png)
 
 The VB file:
 
-![](./pics/vbclass.png)
+![VB](https://github.com/juwikuang/csv2entity/raw/master/pics/vbclass.png)
 
 This is a .Net 3.5 Version of VB file. For the 4.0 Version, the get and set body can be omitted. I will add this feature in the coming version.
 
