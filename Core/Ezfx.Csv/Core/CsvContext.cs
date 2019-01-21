@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Collections.Generic;
+#if NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461|| NET462|| NET47|| NET471|| NET472
 using System.Data.OleDb;
+#endif
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -49,13 +51,13 @@ namespace Ezfx.Csv
                 quotationAt = line.IndexOf("\"", pairAt + 1, StringComparison.Ordinal);
             }
 
-            StringBuilder tempLine =new StringBuilder( line);
+            StringBuilder tempLine = new StringBuilder(line);
             foreach (KeyValuePair<string, string> pair in specialFields)
             {
-                tempLine.Replace("\""+pair.Value+"\"", pair.Key);
+                tempLine.Replace("\"" + pair.Value + "\"", pair.Key);
             }
 
-            string[] result = tempLine.ToString().Split(delimiter.ToArray(),StringSplitOptions.None);
+            string[] result = tempLine.ToString().Split(delimiter.ToArray(), StringSplitOptions.None);
             for (int i = 0; i < result.Length; i++)
             {
 
@@ -79,12 +81,12 @@ namespace Ezfx.Csv
 
         public static string GetConnectionString(string path, bool hasHeader)
         {
-            switch (Path.GetExtension(path).ToUpper(CultureInfo.InvariantCulture))
+            switch (Path.GetExtension(path).ToUpper())
             {
                 case ".MDB":
                     return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";";
                 case ".XLS":
-                    return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";Extended Properties=\"Excel 8.0;HDR="+(hasHeader?"Yes":"NO")+";IMEX=1\"";
+                    return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";Extended Properties=\"Excel 8.0;HDR=" + (hasHeader ? "Yes" : "NO") + ";IMEX=1\"";
                 case ".XLSX":
                     return "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=\"Excel 12.0 Xml;HDR=" + (hasHeader ? "Yes" : "NO") + "\";";
                 case ".ACCDB":
@@ -98,10 +100,15 @@ namespace Ezfx.Csv
             return GetConnectionString(path, true);
         }
 
+#if NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472
+
+
         public static string[] GetTableNames(string path)
         {
+
+
             List<string> result = new List<string>();
-            string connectionString = GetConnectionString(path);  
+            string connectionString = GetConnectionString(path);
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
@@ -117,49 +124,11 @@ namespace Ezfx.Csv
                 connection.Close();
             }
             return result.ToArray();
-        }
 
-        public static CsvColumn[] GetMappings(DataTable table)
-        {
-            List<CsvColumn> result = new List<CsvColumn>();
-            foreach (DataColumn dc in table.Columns)
-            {
-                result.Add(new CsvColumn(dc));
-            }
-            return result.ToArray();
-        }
-        
-        public static string GetMappingsCsv(DataTable table)
-        {
-            CsvColumn[] mappings = GetMappings(table);
-            StringBuilder result = new StringBuilder();
-            result.AppendLine("Ordinal,Name,Description");
-            foreach (CsvColumn mapping in mappings)
-            {
-                result.AppendLine(mapping.Ordinal.ToString(CultureInfo.InvariantCulture) + "," + FixField(mapping.Name));
-            }
-            return result.ToString();
-        }
 
-        public static string GetColumnDefinitionCsv(CsvColumn[] cols)
-        {
-            //CsvColumn[] cols = GetColumnDefination(path, tableName);
-            StringBuilder result = new StringBuilder();
-            result.AppendLine("Ordinal,Name,Description");
-            foreach (CsvColumn col in cols)
-            {
-                result.AppendLine(col.Ordinal.ToString(CultureInfo.InvariantCulture) + "," + FixField(col.Name) + "," + FixField(col.Description));
-            }
-            return result.ToString();
-        }
+    }
 
-        public static string GetColumnDefinitionCsv(string path, string delimiter, string tableName)
-        {
-            CsvColumn[] cols = GetColumnDefinition(path,delimiter, tableName);
-            return GetColumnDefinitionCsv(cols);
-        }
-
-        /// <summary>
+                /// <summary>
         /// By OleDb Schema
         /// </summary>
         /// <param name="path"></param>
@@ -170,17 +139,17 @@ namespace Ezfx.Csv
             List<CsvColumn> result = new List<CsvColumn>();
             if (!path.GetIsOleDb())
             {
-                string[] titles = GetTitles(path, delimiter,Encoding.Default);
-                for (int i = 0; i < titles.Length;i++ )
+                string[] titles = GetTitles(path, delimiter, Encoding.Default);
+                for (int i = 0; i < titles.Length; i++)
                 {
                     result.Add(new CsvColumn { Ordinal = i, Name = titles[i] });
                 }
-                
+
                 return result.ToArray();
             }
-             
+
             string connectionString = GetConnectionString(path);
-            
+
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
@@ -205,15 +174,13 @@ namespace Ezfx.Csv
             return result.ToArray();
         }
 
-        private static string[] GetTitles(string path,string delimiter, Encoding encoding)
+                public static string GetColumnDefinitionCsv(string path, string delimiter, string tableName)
         {
-            using (StreamReader sr = new StreamReader(path, encoding))
-            {
-                return GetFields(sr.ReadLine(), delimiter).Select(c => ToVariant(c)).ToArray();
-            }
+            CsvColumn[] cols = GetColumnDefinition(path, delimiter, tableName);
+            return GetColumnDefinitionCsv(cols);
         }
 
-        public static DataTable GetFirstTable(string path)
+                public static DataTable GetFirstTable(string path)
         {
             string connectionString = GetConnectionString(path);
             DataTable result = new DataTable();
@@ -231,11 +198,11 @@ namespace Ezfx.Csv
             return result;
         }
 
-        public static DataTable GetDataTable(string path, string tableName)
+                public static DataTable GetDataTable(string path, string tableName)
         {
             if (!path.GetIsOleDb())
             {
-                return GetDataTable(path,",", Encoding.Default);
+                return GetDataTable(path, ",", Encoding.Default);
             }
             string sheetName = tableName;
             if (string.IsNullOrEmpty(sheetName))
@@ -249,19 +216,70 @@ namespace Ezfx.Csv
             da.Fill(table);
             return table;
         }
+#endif
+
+        public static CsvColumn[] GetMappings(DataTable table)
+        {
+            List<CsvColumn> result = new List<CsvColumn>();
+            foreach (DataColumn dc in table.Columns)
+            {
+                result.Add(new CsvColumn(dc));
+            }
+            return result.ToArray();
+        }
+
+        public static string GetMappingsCsv(DataTable table)
+        {
+            CsvColumn[] mappings = GetMappings(table);
+            StringBuilder result = new StringBuilder();
+            result.AppendLine("Ordinal,Name,Description");
+            foreach (CsvColumn mapping in mappings)
+            {
+                result.AppendLine(mapping.Ordinal.ToString(CultureInfo.InvariantCulture) + "," + FixField(mapping.Name));
+            }
+            return result.ToString();
+        }
+
+        public static string GetColumnDefinitionCsv(CsvColumn[] cols)
+        {
+            //CsvColumn[] cols = GetColumnDefination(path, tableName);
+            StringBuilder result = new StringBuilder();
+            result.AppendLine("Ordinal,Name,Description");
+            foreach (CsvColumn col in cols)
+            {
+                result.AppendLine(col.Ordinal.ToString(CultureInfo.InvariantCulture) + "," + FixField(col.Name) + "," + FixField(col.Description));
+            }
+            return result.ToString();
+        }
+
+
+
+
+
+        private static string[] GetTitles(string path, string delimiter, Encoding encoding)
+        {
+            using (StreamReader sr = new StreamReader(path, encoding))
+            {
+                return GetFields(sr.ReadLine(), delimiter).Select(c => ToVariant(c)).ToArray();
+            }
+        }
+
+
+
+
 
         //public static DataTable GetDataTable(string path)
         //{
         //    return GetDataTable(path,",", Encoding.Default);
         //}
 
-        public static DataTable GetDataTable(string path,string delimiter, Encoding encoding)
+        public static DataTable GetDataTable(string path, string delimiter, Encoding encoding)
         {
             if (path.GetIsOleDb())
             {
 
             }
-                        
+
             DataTable dt = new DataTable();
             dt.Locale = CultureInfo.InvariantCulture;
             using (StreamReader sr = new StreamReader(path, encoding))

@@ -1,0 +1,3 @@
+D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard1.5\Ezfx.Csv.Publish.csproj.CoreCompileInputs.cache
+D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard1.5\Ezfx.Csv.Publish.AssemblyInfoInputs.cache
+D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard1.5\Ezfx.Csv.Publish.AssemblyInfo.cs

@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Ezfx.Csv</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Ezfx.Csv\Attributes\CsvAssemblyAttribute.cs" Link="CsvAssemblyAttribute.cs" />
+    <Compile Include="..\Ezfx.Csv\Attributes\CsvObjectAttribute.cs" Link="CsvObjectAttribute.cs" />
+    <Compile Include="..\Ezfx.Csv\Attributes\CsvOriginalFieldsAttribute.cs" Link="CsvOriginalFieldsAttribute.cs" />
+    <Compile Include="..\Ezfx.Csv\Attributes\SystemCsvColumnAttribute.cs" Link="SystemCsvColumnAttribute.cs" />
+    <Compile Include="..\Ezfx.Csv\Common\FileExtensions.cs" Link="FileExtensions.cs" />
+    <Compile Include="..\Ezfx.Csv\Common\MemberInfoExtensions.cs" Link="MemberInfoExtensions.cs" />
+    <Compile Include="..\Ezfx.Csv\Common\PropertyInfoExtensions.cs" Link="PropertyInfoExtensions.cs" />
+    <Compile Include="..\Ezfx.Csv\Core\CsvColumn.cs" Link="CsvColumn.cs" />
+    <Compile Include="..\Ezfx.Csv\Core\CsvConfig.cs" Link="CsvConfig.cs" />
+    <Compile Include="..\Ezfx.Csv\Core\CsvContext.cs" Link="CsvContext.cs" />
+    <Compile Include="..\Ezfx.Csv\Core\CsvContext`1.cs" Link="CsvContext`1.cs" />
+    <Compile Include="..\Ezfx.Csv\Core\CsvContext`1_DB.cs" Link="CsvContext`1_DB.cs" />
+    <Compile Include="..\Ezfx.Csv\Core\CsvContext`1_Write.cs" Link="CsvContext`1_Write.cs" />
+    <Compile Include="..\Ezfx.Csv\Core\CsvMappingType.cs" Link="CsvMappingType.cs" />
+    <Compile Include="..\Ezfx.Csv\Core\CsvPropertyInfo.cs" Link="CsvPropertyInfo.cs" />
+    <Compile Include="..\Ezfx.Csv\Exceptions\CsvEncodingNotFoundException.cs" Link="CsvEncodingNotFoundException.cs" />
+    <Compile Include="..\Ezfx.Csv\Exceptions\CsvException.cs" Link="CsvException.cs" />
+    <Compile Include="..\Ezfx.Csv\Exceptions\CsvMappingException.cs" Link="CsvMappingException.cs" />
+    <Compile Include="..\Ezfx.Csv\Exceptions\CsvOrderNotFoundException.cs" Link="CsvOrderNotFoundException.cs" />
+    <Compile Include="..\Ezfx.Csv\Exceptions\CsvTitleNotFoundException.cs" Link="CsvTitleNotFoundException.cs" />
+    <Compile Include="..\Ezfx.Csv\Exceptions\DataTypeNotSupportException.cs" Link="DataTypeNotSupportException.cs" />
+    <Compile Include="..\Ezfx.Csv\Exceptions\ParseException.cs" Link="ParseException.cs" />
+  </ItemGroup>
+
+
+
+</Project>

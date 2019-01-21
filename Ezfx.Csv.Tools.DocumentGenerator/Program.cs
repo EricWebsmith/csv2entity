@@ -5,9 +5,6 @@ namespace Ezfx.Csv.Tools.DocumentGenerator
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {

@@ -11,6 +11,7 @@ namespace Ezfx.Csv
         public static T[] ReadFile<T>(string path, string tableName, CsvConfig config)
             where T : new()
         {
+#if NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472
             if (path.GetIsOleDb())
             {
                 DataTable table = GetDataTable(path, tableName);
@@ -20,6 +21,9 @@ namespace Ezfx.Csv
             {
                 return ReadFile<T>(path, config);
             }
+#else
+            return ReadFile<T>(path, config);
+#endif
         }
 
         public static T[] ReadDataTable<T>(DataTable table, CsvConfig config)
