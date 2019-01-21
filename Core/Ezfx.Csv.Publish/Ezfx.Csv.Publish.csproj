@@ -15,7 +15,6 @@
     <Compile Include="..\Ezfx.Csv\Common\PropertyInfoExtensions.cs" Link="PropertyInfoExtensions.cs" />
     <Compile Include="..\Ezfx.Csv\Core\CsvColumn.cs" Link="CsvColumn.cs" />
     <Compile Include="..\Ezfx.Csv\Core\CsvConfig.cs" Link="CsvConfig.cs" />
-    <Compile Include="..\Ezfx.Csv\Core\CsvContext.cs" Link="CsvContext.cs" />
     <Compile Include="..\Ezfx.Csv\Core\CsvContext`1.cs" Link="CsvContext`1.cs" />
     <Compile Include="..\Ezfx.Csv\Core\CsvContext`1_DB.cs" Link="CsvContext`1_DB.cs" />
     <Compile Include="..\Ezfx.Csv\Core\CsvContext`1_Write.cs" Link="CsvContext`1_Write.cs" />

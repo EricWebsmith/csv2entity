@@ -1,9 +1,0 @@
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\bin\Debug\netstandard2.0\Ezfx.Csv.deps.json
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\bin\Debug\netstandard2.0\Ezfx.Csv.dll
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\bin\Debug\netstandard2.0\Ezfx.Csv.pdb
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard2.0\Ezfx.Csv.Publish.csprojAssemblyReference.cache
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard2.0\Ezfx.Csv.Publish.csproj.CoreCompileInputs.cache
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard2.0\Ezfx.Csv.Publish.AssemblyInfoInputs.cache
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard2.0\Ezfx.Csv.Publish.AssemblyInfo.cs
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard2.0\Ezfx.Csv.dll
-D:\projects\csv2entity\Core\Ezfx.Csv.Publish\obj\Debug\netstandard2.0\Ezfx.Csv.pdb

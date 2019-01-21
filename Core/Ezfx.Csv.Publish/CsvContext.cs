@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Collections.Generic;
+#if NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461|| NET462|| NET47|| NET471|| NET472
 using System.Data.OleDb;
+#endif
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -97,9 +99,14 @@ namespace Ezfx.Csv
         {
             return GetConnectionString(path, true);
         }
-        
+
+#if NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472
+
+
         public static string[] GetTableNames(string path)
         {
+
+
             List<string> result = new List<string>();
             string connectionString = GetConnectionString(path);
             using (OleDbConnection connection = new OleDbConnection(connectionString))
@@ -117,9 +124,11 @@ namespace Ezfx.Csv
                 connection.Close();
             }
             return result.ToArray();
-        }
 
-        /// <summary>
+
+    }
+
+                /// <summary>
         /// By OleDb Schema
         /// </summary>
         /// <param name="path"></param>
@@ -165,13 +174,13 @@ namespace Ezfx.Csv
             return result.ToArray();
         }
 
-        public static string GetColumnDefinitionCsv(string path, string delimiter, string tableName)
+                public static string GetColumnDefinitionCsv(string path, string delimiter, string tableName)
         {
             CsvColumn[] cols = GetColumnDefinition(path, delimiter, tableName);
             return GetColumnDefinitionCsv(cols);
         }
 
-        public static DataTable GetFirstTable(string path)
+                public static DataTable GetFirstTable(string path)
         {
             string connectionString = GetConnectionString(path);
             DataTable result = new DataTable();
@@ -189,7 +198,7 @@ namespace Ezfx.Csv
             return result;
         }
 
-        public static DataTable GetDataTable(string path, string tableName)
+                public static DataTable GetDataTable(string path, string tableName)
         {
             if (!path.GetIsOleDb())
             {
@@ -207,8 +216,9 @@ namespace Ezfx.Csv
             da.Fill(table);
             return table;
         }
-        
-        public static CsvColumn[] GetMappings(DataTable table)
+#endif
+
+    public static CsvColumn[] GetMappings(DataTable table)
         {
             List<CsvColumn> result = new List<CsvColumn>();
             foreach (DataColumn dc in table.Columns)
@@ -241,7 +251,11 @@ namespace Ezfx.Csv
             }
             return result.ToString();
         }
-        
+
+
+
+
+
         private static string[] GetTitles(string path, string delimiter, Encoding encoding)
         {
             using (StreamReader sr = new StreamReader(path, encoding))
@@ -249,7 +263,11 @@ namespace Ezfx.Csv
                 return GetFields(sr.ReadLine(), delimiter).Select(c => ToVariant(c)).ToArray();
             }
         }
-        
+
+
+
+
+
         public static DataTable GetDataTable(string path)
         {
             return GetDataTable(path, ",", Encoding.Default);
