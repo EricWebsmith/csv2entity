@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Ezfx.Csv</id>
+    <version>2.0.0</version>
+    <title>CSV2Entity</title>
+    <authors>Eric Chow</authors>
+    <owners>Eric Chow</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <projectUrl>https://github.com/juwikuang/csv2entity</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/juwikuang/csv2entity/master/csv.png</iconUrl>
+    <description>Auto Generate CSV Object Class</description>
+    <releaseNotes>Initial</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>CSV Entity C# VB.net</tags>
+  </metadata>
+</package>

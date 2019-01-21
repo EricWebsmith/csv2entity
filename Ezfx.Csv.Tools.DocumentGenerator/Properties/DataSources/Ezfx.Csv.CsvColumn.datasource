@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="CsvColumn" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Ezfx.Csv.CsvColumn, Ezfx.Csv, Version=1.0.0.15000, Culture=neutral, PublicKeyToken=f6bc0ca2053018a4</TypeInfo>
+   <TypeInfo>Ezfx.Csv.CsvColumn, Ezfx.Csv, Version=1.0.0.16000, Culture=neutral, PublicKeyToken=f6bc0ca2053018a4</TypeInfo>
 </GenericObjectDataSource>
