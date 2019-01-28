@@ -112,7 +112,7 @@ namespace Ezfx.Csv.Tester
                 {
                     firstLine = sr.ReadLine();
                 }
-                string[] titles = CsvContext.GetFields(firstLine,",");
+                string[] titles = CsvContext.GetRecords(firstLine,",").First().ToArray();
                 RefreshColumns();
                 for (int i = 0; i < titles.Length; i++)
                 {
