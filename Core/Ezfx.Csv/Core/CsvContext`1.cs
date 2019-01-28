@@ -59,6 +59,12 @@ namespace Ezfx.Csv
             return null;
         }
 
+        //added a new overload of this method  1/27/2019
+        public static T[] ReadContext<T>(string all) where T : new()
+        {
+            return ReadContext<T>(all, CsvConfig.Default);
+        }
+
         public static T[] ReadContext<T>(string all, CsvConfig config) where T : new()
         {
             return ReadContext<T>(all, config, null, null);
