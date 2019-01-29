@@ -13,7 +13,7 @@
 
 ### Instial Visual Studio Extension from marketplace
 
-https://marketplace.visualstudio.com/items?itemName=EricZhou.csv2entity
+https://marketplace.visualstudio.com/items?itemName=EricZhou.int123
 
 To view the introduce Video please visit:
 
