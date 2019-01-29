@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Collections.Generic;
-#if NETFX
+#if !NETSTANDARD
 using System.Data.OleDb;
 #endif
 using System.Globalization;
@@ -217,7 +217,7 @@ namespace Ezfx.Csv
             result = result.Replace("\\", "");
             return result;
         }
-#if NETFX
+#if !NETSTANDARD
         public static string GetConnectionString(string path, bool hasHeader)
         {
             switch (Path.GetExtension(path).ToUpper())
