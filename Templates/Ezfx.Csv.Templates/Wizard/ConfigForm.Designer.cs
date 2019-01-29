@@ -160,6 +160,7 @@
             this.encodingComboBox.Name = "encodingComboBox";
             this.encodingComboBox.Size = new System.Drawing.Size(313, 21);
             this.encodingComboBox.TabIndex = 29;
+            this.encodingComboBox.SelectedIndexChanged += new System.EventHandler(this.encodingComboBox_SelectedIndexChanged);
             // 
             // csvConfigBindingSource
             // 
@@ -207,7 +208,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 68);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 35;
             this.label6.Text = "Delimiter:";
             // 

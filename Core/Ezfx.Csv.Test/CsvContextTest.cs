@@ -61,6 +61,7 @@ namespace Ezfx.Csv.Test
             Assert.AreEqual(8, imdbs[3].rating);
             Assert.AreEqual("Adventure,Comedy,Drama",imdbs[8].genres);
             Assert.AreEqual("Interstellar", imdbs[50].title);
+            Assert.AreEqual("Comedy,\r\nDrama,\r\nMusic".Replace('\r','r'), imdbs[3].genres.Replace('\r', 'r'));
             Assert.AreEqual("Comedy,\r\nDrama,\r\nMusic", imdbs[3].genres);
             Assert.AreEqual("In 1862, Amsterdam Vallon returns to the Five Points area of \"New York\" City seeking revenge against Bill the Butcher, his father's killer.",imdbs[10].summary);
         }
