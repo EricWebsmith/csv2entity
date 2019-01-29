@@ -59,33 +59,79 @@ namespace Ezfx.Csv
             return null;
         }
 
-        public static T[] ReadContext<T>(string all, CsvConfig config) where T : new()
+        //added a new overload of this method  1/27/2019
+        public static T[] ReadContext<T>(string context) where T : new()
         {
-            return ReadContext<T>(all, config, null, null);
+            return ReadContext<T>(context, CsvConfig.Default);
+        }
+        
+        public static T[] ReadContext<T>(string context, CsvConfig config) where T : new()
+        {
+            return ReadContext<T>(context, config, null, null);
         }
 
-        public static T[] ReadContext<T>(string all, CsvConfig config, Predicate<string> preFilter, Predicate<T> postFilter) where T : new()
+        //modify this to abey rfc4180 https://tools.ietf.org/html/rfc4180
+        public static T[] ReadContext<T>(string context, CsvConfig config, Predicate<string> preFilter, Predicate<T> postFilter) where T : new()
         {
-            string[] lines = all.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            return ReadContext(lines, config, preFilter, postFilter);//
-        }
+            List<string> lines = context.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            string newContent = string.Empty;
+            if(preFilter!=null)
+            {
+                lines.RemoveAll(preFilter);
+                newContent = string.Join("\r\n", lines);
+            }
+            else
+            {
+                newContent = context;
+            }
 
-        public static T[] ReadContext<T>(IEnumerable<string> lines, CsvConfig config) where T : new()
+            List<PropertyInfo> properties = typeof(T).GetProperties().ToList();
+
+            var items = new List<T>();
+            var recoreds = GetRecords(newContent, config.Delimiter).ToList();
+            if(config.HasHeader)
+            {
+                recoreds.RemoveAt(0);
+            }
+            foreach(var record in recoreds)
+            {
+                var item = ReadRecord<T>(record, properties);
+                items.Add(item);
+            }
+
+            if(postFilter!=null)
+            {
+                items.RemoveAll(postFilter);
+            }
+
+            return items.ToArray();
+        }
+        
+        /// <summary>
+        /// use this unless you splited the content a line as a record. (not a physical line)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="records"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        [Obsolete("", true)]
+        public static T[] ReadContext<T>(IEnumerable<string> records, CsvConfig config) where T : new()
         {
-            return ReadContext<T>(lines, config, null, null);
+            return ReadContext<T>(records, config, null, null);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="lines"></param>
+        /// <param name="records"></param>
         /// <param name="config"></param>
         /// <param name="preFilter">Remove logically invalid lines</param>
         /// <param name="postFilter">Remove invalid business objects</param>
         /// <returns></returns>
-        public static T[] ReadContext<T>(IEnumerable<string> lines, CsvConfig config, Predicate<string> preFilter, Predicate<T> postFilter) where T : new()
+        [Obsolete("",true)]
+        public static T[] ReadContext<T>(IEnumerable<string> records, CsvConfig config, Predicate<string> preFilter, Predicate<T> postFilter) where T : new()
         {
-            List<string> list = lines.ToList(); //all.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> list = records.ToList(); //all.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             list.RemoveAll(line => line.StartsWith("#"));
             if (preFilter != null)
             {
@@ -105,29 +151,18 @@ namespace Ezfx.Csv
                 titles = list[0].Split(new string[] { config.Delimiter }, StringSplitOptions.None);
             }
 
-            for(int i=0;i<titles.Length;i++)
+            for (int i = 0; i < titles.Length; i++)
             {
-                titles[i] = titles[i].Trim(new char[] { '"',' '});
+                titles[i] = titles[i].Trim(new char[] { '"', ' ' });
             }
 
             for (int i = (config.HasHeader ? 1 : 0); i < list.Count; i++)
             {
                 if (!list[i].StartsWith("#", StringComparison.OrdinalIgnoreCase))
                 {
-                    ts.Add(ReadLine<T>(list[i], titles, config));
+                    ts.Add(ReadRecord<T>(list[i], titles, config));
                 }
             }
-
-            //if (config.MappingType == CsvMappingType.Order)
-            //{
-            //    for (int i = (config.HasHeader ? 1 : 0); i < list.Count; i++)
-            //    {
-            //        if (!list[i].StartsWith("#", StringComparison.OrdinalIgnoreCase))
-            //        {
-            //            ts.Add(ReadLine<T>(list[i], config));
-            //        }
-            //    }
-            //}
 
             if (postFilter != null)
             {
@@ -137,40 +172,21 @@ namespace Ezfx.Csv
             return ts.ToArray();
         }
 
-        public static T ReadLine<T>(string line, string[] titles, CsvConfig config) where T : new()
+        private static T ReadRecord<T>(CsvRecord record, List<PropertyInfo> properties) where T : new()
         {
-            string[] fields = CsvContext.GetFields(line, config.Delimiter);
             T result = new T();
-            Type t = typeof(T);
-            List<PropertyInfo> pis = t.GetProperties().ToList();
-            for (int i = 0; i < fields.Length; i++)
+            for (int i = 0; i < record.Count; i++)
             {
-                PropertyInfo pi = null;
-                if (config.MappingType == CsvMappingType.Title)
-                {
-                    pi = GetPropertyInfo(pis, i, titles[i], config);
-                }
-
-                if (config.MappingType == CsvMappingType.Order)
-                {
-                    pi = GetPropertyInfo(pis, i);
-                }
-
-                if (pi != null)
-                {
-                    pi.SetValueEx(result, fields[i]);
-                }
-            }
-
-            foreach (PropertyInfo pi in pis)
-            {
-                //If the property is adorned with CsvOriginalFieldsAttribute, set the value to fields
-                if (pi.IsDefined(typeof(CsvOriginalFieldsAttribute), true))
-                {
-                    pi.SetValue(result, fields, null);
-                }
+                properties[i].SetValueEx(result, record[i]);
             }
             return result;
+        }
+
+        public static T ReadRecord<T>(string line, string[] titles, CsvConfig config) where T : new()
+        {
+            CsvRecord record = CsvContext.GetRecords(line, config.Delimiter).First();
+            List<PropertyInfo> properties = typeof(T).GetProperties().ToList();
+            return ReadRecord<T>(record, properties);
         }
 
         //public static T ReadByOrder<T>(string line, CsvConfig config) where T : new()

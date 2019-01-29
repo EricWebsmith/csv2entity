@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -59,6 +59,7 @@
     <Compile Include="Common\FileExtensions.cs" />
     <Compile Include="Common\PropertyInfoExtensions.cs" />
     <Compile Include="Common\MemberInfoExtensions.cs" />
+    <Compile Include="Core\Define.cs" />
     <Compile Include="Core\CsvContext`1_Write.cs" />
     <Compile Include="Core\CsvColumn.cs" />
     <Compile Include="Core\CsvConfig.cs" />
@@ -67,15 +68,10 @@
     <Compile Include="Core\CsvContext`1_DB.cs" />
     <Compile Include="Core\CsvMappingType.cs" />
     <Compile Include="Core\CsvPropertyInfo.cs" />
-    <Compile Include="Exceptions\CsvEncodingNotFoundException.cs" />
-    <Compile Include="Exceptions\DataTypeNotSupportException.cs" />
-    <Compile Include="Exceptions\ParseException.cs" />
     <Compile Include="Attributes\CsvAssemblyAttribute.cs" />
-    <Compile Include="Exceptions\CsvException.cs" />
+    <Compile Include="Core\CsvExceptions.cs" />
     <Compile Include="Attributes\SystemCsvColumnAttribute.cs" />
-    <Compile Include="Exceptions\CsvMappingException.cs" />
-    <Compile Include="Exceptions\CsvOrderNotFoundException.cs" />
-    <Compile Include="Exceptions\CsvTitleNotFoundException.cs" />
+    <Compile Include="Core\CsvRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\SharedAssemblyInfo.cs" />
   </ItemGroup>

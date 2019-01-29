@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Collections.Generic;
+#if !NETSTANDARD
 using System.Data.OleDb;
+#endif
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace Ezfx.Csv
 
             if (value.Contains(delimiter))
             {
+
                 return "\"" + value + "\"";
             }
             return value;
@@ -32,40 +35,178 @@ namespace Ezfx.Csv
             return FixField(value, ",");
         }
 
-        public static string[] GetFields(string line, string delimiter)
+        public static string[] GetFields(string content, string delimiter)
         {
-            //string tempLine = line;
-            Dictionary<string, string> specialFields = new Dictionary<string, string>();
-            int quotationAt = line.IndexOf("\"", StringComparison.Ordinal);
-            while (quotationAt >= 0)
-            {
-                int pairAt = line.IndexOf("\"", quotationAt + 1, StringComparison.Ordinal);
-                string guid = Guid.NewGuid().ToString();
-                string specialField = line.Substring(quotationAt + 1, pairAt - quotationAt - 1);
-                //tempLine = tempLine.Substring(0, quotationAt)
-                //    + guid
-                //    + tempLine.Substring(pairAt + 1);
-                specialFields.Add(guid, specialField);
-                quotationAt = line.IndexOf("\"", pairAt + 1, StringComparison.Ordinal);
-            }
+            return GetRecords(content, delimiter).First().ToArray();
+        }
 
-            StringBuilder tempLine = new StringBuilder(line);
-            foreach (KeyValuePair<string, string> pair in specialFields)
-            {
-                tempLine.Replace("\"" + pair.Value + "\"", pair.Key);
-            }
+        public static CsvRecord[] GetRecords(string content, string delimiter)
+        {
+            List<CsvRecord> records = new List<CsvRecord>();
+            //List<string> fields = new List<string>();
+            content = content + "\n";
+            var charArray = content.ToArray();
 
-            string[] result = tempLine.ToString().Split(delimiter.ToArray(), StringSplitOptions.None);
-            for (int i = 0; i < result.Length; i++)
+            //the following variables are used in the for loop.
+            var currentField = string.Empty;
+            var concatenating = true; //meaning we are concatenating a field. or to say, we find the start but we are not at the end of a field yet.
+            var startWithDoubleQuote = false;
+            var startRecord = true;
+            var currentRecord = new CsvRecord();
+            records.Add(currentRecord);
+            for (int i = 0; i < charArray.Length; i++)
             {
 
-                if (specialFields.ContainsKey(result[i]))
+                var currentChar = charArray[i];
+                var nextChar = i + 1 < charArray.Length? charArray[i + 1] : '\0';
+
+                if (startRecord)
                 {
-                    result[i] = specialFields[result[i]];
+                    switch (currentChar)
+                    {
+                        case '\r':
+                            continue;
+                        case '\n':
+                            continue;
+                        case ',':
+                            currentRecord.Add(string.Empty);
+                            concatenating = false;
+                            break;
+                        case '"':
+                            startWithDoubleQuote = true;
+                            concatenating = true;
+                            break;
+                        default:
+                            currentField += currentChar;
+                            startWithDoubleQuote = false;
+                            concatenating = true;
+                            break;
+                    }
+                    startRecord = false;
+                }
+                else if (concatenating)
+                {
+                    if (startWithDoubleQuote)
+                    {
+                        if (currentChar == '"')
+                        {
+                            //if this is the last char
+                            if (i + 1 == charArray.Length)
+                            {
+                                currentField += currentChar;
+                                AddField(currentRecord, ref currentField, ref concatenating);
+                                
+                                continue;
+                            }
+
+                            if (nextChar == '"')
+                            {
+                                currentField += currentChar;
+                                i++;
+                            }
+                            else //nextChar != '"'
+                            {
+                                AddField(currentRecord, ref currentField, ref concatenating);
+                                if (nextChar == ',') i++;
+                            }
+                        }
+                        else // currentChar!='"'
+                        {
+                            if (i + 1 == charArray.Length)
+                            {
+                                throw new CsvFormatException();
+                            }
+                            currentField += currentChar;
+                        }
+
+                    }
+                    else //startWithDoubleQuote
+                    {
+                        //if this is the last char
+                        if (i + 1 == charArray.Length)
+                        {
+                            currentField += currentChar;
+                            currentRecord.Add(currentField);
+                            continue;
+                        }
+
+                        switch(currentChar)
+                        {
+                            case '\r':
+                            case '\n':
+                                currentRecord.Add(currentField);
+                                currentRecord = new CsvRecord();
+                                currentField = string.Empty;
+                                records.Add(currentRecord);
+                                startRecord = true;
+                                continue;
+                            case ',':
+                                AddField(currentRecord, ref currentField, ref concatenating);
+                                break;
+                            default:
+                                currentField += currentChar;
+                                break;
+                        }
+                    }
+                }
+                else // not concatenating
+                {
+
+                    switch (currentChar)
+                    {
+                        case '\r':
+                        case '\n':
+                            var previousChar =i>0? charArray[i - 1]:'\0';
+                            if (previousChar==',')
+                            {
+                                currentRecord.Add(string.Empty);
+                                currentRecord = new CsvRecord();
+                                records.Add(currentRecord);
+                                startRecord = true;
+                            }
+                            else
+                            {
+                                currentRecord = new CsvRecord();
+                                records.Add(currentRecord);
+                                startRecord = true;
+                            }
+
+                            continue;
+                        case ',':
+                            currentRecord.Add(string.Empty);
+                            break;
+                        case '"':
+                            startWithDoubleQuote = true;
+                            concatenating = true;
+                            break;
+                        default:
+                            startWithDoubleQuote = false;
+                            concatenating = true;
+                            currentField += currentChar;
+                            break;
+                    }
                 }
             }
-            return result.ToArray();
+            return records.ToArray();
         }
+
+        private static void AddField(CsvRecord currentRecord, ref string currentField, ref bool concatenating)
+        {
+            currentRecord.Add(currentField);
+            currentField = string.Empty;
+            concatenating = false;
+        }
+
+        //private static void AddField(CsvRecord currentRecord, char nextChar, ref string currentField, ref bool concatenating, ref int i)
+        //{
+        //    currentRecord.Add(currentField);
+        //    currentField = string.Empty;
+        //    concatenating = false;
+        //    if (nextChar == ',')
+        //    {
+        //        i++;
+        //    }
+        //}
 
         public static string ToVariant(string name)
         {
@@ -76,7 +217,7 @@ namespace Ezfx.Csv
             result = result.Replace("\\", "");
             return result;
         }
-
+#if !NETSTANDARD
         public static string GetConnectionString(string path, bool hasHeader)
         {
             switch (Path.GetExtension(path).ToUpper())
@@ -97,7 +238,7 @@ namespace Ezfx.Csv
         {
             return GetConnectionString(path, true);
         }
-        
+
         public static string[] GetTableNames(string path)
         {
             List<string> result = new List<string>();
@@ -207,7 +348,7 @@ namespace Ezfx.Csv
             da.Fill(table);
             return table;
         }
-        
+
         public static CsvColumn[] GetMappings(DataTable table)
         {
             List<CsvColumn> result = new List<CsvColumn>();
@@ -241,15 +382,15 @@ namespace Ezfx.Csv
             }
             return result.ToString();
         }
-        
+#endif
         private static string[] GetTitles(string path, string delimiter, Encoding encoding)
         {
             using (StreamReader sr = new StreamReader(path, encoding))
             {
-                return GetFields(sr.ReadLine(), delimiter).Select(c => ToVariant(c)).ToArray();
+                return GetRecords(sr.ReadLine(), delimiter).First().Select(c => ToVariant(c)).ToArray();
             }
         }
-        
+
         public static DataTable GetDataTable(string path)
         {
             return GetDataTable(path, ",", Encoding.Default);
@@ -267,7 +408,7 @@ namespace Ezfx.Csv
             using (StreamReader sr = new StreamReader(path, encoding))
             {
                 string firstLine = sr.ReadLine();
-                string[] titles = CsvContext.GetFields(firstLine, delimiter);
+                string[] titles = CsvContext.GetRecords(firstLine, delimiter).First().ToArray();
 
                 for (int i = 0; i < titles.Length; i++)
                 {
@@ -286,7 +427,7 @@ namespace Ezfx.Csv
                     //read lines continuously
                     int lastDoubleQuote = line.LastIndexOf('"');
                     { }
-                    string[] fields = CsvContext.GetFields(line, delimiter);
+                    string[] fields = CsvContext.GetRecords(line, delimiter).First().ToArray();
                     DataRow dr = dt.NewRow();
                     for (int i = 0; i < fields.Length && i < dt.Columns.Count; i++)
                     {

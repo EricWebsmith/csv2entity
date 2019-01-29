@@ -38,3 +38,4 @@
 /Ezfx.Csv.Tools.DocumentGenerator/obj
 /packages/NUnit.3.11.0
 /Ezfx.Csv.Tools.DocumentGenerator/bin/Release
+/Core/Ezfx.Csv.Publish/bin/Debug/netstandard2.0

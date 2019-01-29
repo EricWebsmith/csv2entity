@@ -134,9 +134,23 @@ namespace Ezfx.Csv.ItemWizards
 
         private void tableComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Config.Name = tableComboBox.SelectedItem.ToString();
+            if (tableComboBox.SelectedItem != null)
+            {
+                Config.Name = tableComboBox.SelectedItem.ToString();
+            }
+            
             Display();
         }
 
+        private void encodingComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (encodingComboBox.SelectedItem != null)
+            //{
+            //    Config.Name = tableComboBox.SelectedItem.ToString();
+            //encodingComboBox.SelectedItem
+            //}
+            Config.CodePage = ((Encoding)encodingComboBox.SelectedItem).CodePage;
+            Display();
+        }
     }
 }
