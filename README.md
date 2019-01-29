@@ -93,6 +93,24 @@ After the installation a new template called EZFX CSV Class will be displayed in
 
 Add VB Class:
 
+![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/addvb.png)
+
+Add C# Class:
+
+![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/addcs.png)
+
+After click of add, a CSV Generate Wizard Window will be displayed, you can select a CSV file by click the browse button, this Wizard support Excel(xls, xlsx) and Access files(mdb, accdb), too. You specify the encoding for the CSV file and table name for Excel and Access file.
+
+ 
+
+The following is the generated file:
+
+The C# file:
+
+![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/csclass.png)
+
+The VB code:
+
 ```
 Imports Ezfx.Csv
 
@@ -173,24 +191,6 @@ Public Class Csv1
 
 End Class
 ```
-
-Add C# Class:
-
-![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/addcs.png)
-
-After click of add, a CSV Generate Wizard Window will be displayed, you can select a CSV file by click the browse button, this Wizard support Excel(xls, xlsx) and Access files(mdb, accdb), too. You specify the encoding for the CSV file and table name for Excel and Access file.
-
- 
-
-The following is the generated file:
-
-The C# file:
-
-![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/csclass.png)
-
-The VB file:
-
-![VB](https://github.com/juwikuang/csv2entity/raw/master/pics/vbclass.png)
 
 This is a .Net 3.5 Version of VB file. For the 4.0 Version, the get and set body can be omitted. I will add this feature in the coming version.
 
