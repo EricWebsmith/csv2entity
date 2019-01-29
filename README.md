@@ -127,6 +127,11 @@ The following code reads a csv file and put data to Csv Objects.
 ImdbCsv[] imdbs = CsvContext.ReadFile<ImdbCsv>("imdb.csv");
 ```
 
+You can also provide csv content as a string
+
+```
+ImdbCsv[] imdbs = CsvContext.ReadContext<ImdbCsv>("...");
+```
  
 
 ## Document Generator
