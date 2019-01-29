@@ -119,13 +119,13 @@ This is a .Net 3.5 Version of VB file. For the 4.0 Version, the get and set body
 
  
 
-## CSV Reader
+## CSV Read
 
-At last, we need a way to read CSV files and put data into the CSV classes. The method is: split CSV line to an array, iterate over that array get index of each field, and reflect the CSV class (i.e. Cars above) get order of each property. When index of field and order of property matches each other, transmit the value.
+The following code reads a csv file and put data to Csv Objects.
 
- 
-
-Following is the result from Visual Studio 11 watch window.
+```
+ImdbCsv[] imdbs = CsvContext.ReadFile<ImdbCsv>("imdb.csv");
+```
 
  
 
