@@ -93,7 +93,86 @@ After the installation a new template called EZFX CSV Class will be displayed in
 
 Add VB Class:
 
-![VB](https://github.com/juwikuang/csv2entity/raw/master/pics/addvb.png)
+```
+Imports Ezfx.Csv
+
+<CsvObject(CodePage:=65001, Description:="", HasHeader:=True, MappingType:=Ezfx.Csv.CsvMappingType.Title, Name:="", Delimiter:=",")> _
+Public Class Csv1
+
+    ''' <summary>
+    ''' 0, file_format
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=0, Name:="file_format")> _
+    Public Property file_format() As String
+
+
+    ''' <summary>
+    ''' 1, languages
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=1, Name:="languages")> _
+    Public Property languages() As String
+
+
+    ''' <summary>
+    ''' 2, no
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=2, Name:="no")> _
+    Public Property no() As String
+
+
+    ''' <summary>
+    ''' 3, publish_time
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=3, Name:="publish_time")> _
+    Public Property publish_time() As String
+
+
+    ''' <summary>
+    ''' 4, source
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=4, Name:="source")> _
+    Public Property source() As String
+
+
+    ''' <summary>
+    ''' 5, srt_page_url
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=5, Name:="srt_page_url")> _
+    Public Property srt_page_url() As String
+
+
+    ''' <summary>
+    ''' 6, title
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=6, Name:="title")> _
+    Public Property title() As String
+
+
+    ''' <summary>
+    ''' 7, title_en
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=7, Name:="title_en")> _
+    Public Property title_en() As String
+
+
+    ''' <summary>
+    ''' 8, tv_movie
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=8, Name:="tv_movie")> _
+    Public Property tv_movie() As String
+
+
+    ''' <summary>
+    ''' 9, version
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=9, Name:="version")> _
+    Public Property version() As String
+
+
+
+
+End Class
+```
 
 Add C# Class:
 
