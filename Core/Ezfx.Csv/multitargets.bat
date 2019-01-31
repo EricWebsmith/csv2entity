@@ -1,0 +1,11 @@
+msbuild /p:TargetFrameworkVersion=v3.5 /p:OutputPath=bin\Debug\net35\
+msbuild /p:TargetFrameworkVersion=v4.0 /p:OutputPath=bin\Debug\net4\
+msbuild /p:TargetFrameworkVersion=v4.5 /p:OutputPath=bin\Debug\net45\
+msbuild /p:TargetFrameworkVersion=v4.5 /p:OutputPath=bin\Debug\net451\
+msbuild /p:TargetFrameworkVersion=v4.5 /p:OutputPath=bin\Debug\net452\
+msbuild /p:TargetFrameworkVersion=v4.6 /p:OutputPath=bin\Debug\net46\
+msbuild /p:TargetFrameworkVersion=v4.6 /p:OutputPath=bin\Debug\net461\
+msbuild /p:TargetFrameworkVersion=v4.6 /p:OutputPath=bin\Debug\net462\
+msbuild /p:TargetFrameworkVersion=v4.7 /p:OutputPath=bin\Debug\net47\
+msbuild /p:TargetFrameworkVersion=v4.7 /p:OutputPath=bin\Debug\net471\
+msbuild /p:TargetFrameworkVersion=v4.7 /p:OutputPath=bin\Debug\net472\

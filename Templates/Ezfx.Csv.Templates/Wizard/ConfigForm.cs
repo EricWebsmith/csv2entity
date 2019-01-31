@@ -7,6 +7,26 @@ using System.Windows.Forms;
 
 namespace Ezfx.Csv.ItemWizards
 {
+    public class EncodingComboboxItem
+    {
+        public EncodingInfo Value { get; set; }
+        public string Text
+        {
+            get { return Value.DisplayName; }
+        }
+
+        public int CodePage
+        {
+            get { return Value.CodePage; }
+        }
+
+        public override string ToString()
+        {
+            return Value.DisplayName;
+        }
+    }
+
+
     public partial class ConfigForm : Form
     {
 
@@ -78,7 +98,8 @@ namespace Ezfx.Csv.ItemWizards
             infos.Sort((a, b) => a.DisplayName.CompareTo(b.DisplayName));
             foreach (EncodingInfo info in infos)
             {
-                encodingComboBox.Items.Add( info.DisplayName);
+                EncodingComboboxItem item = new EncodingComboboxItem() {  Value = info };
+                encodingComboBox.Items.Add(item);
             }
             encodingComboBox.Text = Encoding.Default.EncodingName;
         }
@@ -94,12 +115,6 @@ namespace Ezfx.Csv.ItemWizards
             Config.CodePage = Encoding.Unicode.CodePage;
             Display();
         }
-
-        //private void encodingComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    //Config.CodePage = ((MyEncoding)encodingComboBox.SelectedItem).CodePage;
-        //    Display();
-        //}
 
         #endregion
 
@@ -120,7 +135,7 @@ namespace Ezfx.Csv.ItemWizards
             }
             else
             {
-                dt = CsvContext.GetDataTable(pathTextBox.Text,Config.Delimiter, Encoding.GetEncoding(Config.CodePage));
+                dt = CsvContext.GetDataTable(pathTextBox.Text, Config.Delimiter, Encoding.GetEncoding(Config.CodePage));
 
             }
             Config.Columns.Clear();
@@ -138,7 +153,7 @@ namespace Ezfx.Csv.ItemWizards
             {
                 Config.Name = tableComboBox.SelectedItem.ToString();
             }
-            
+
             Display();
         }
 
@@ -149,7 +164,7 @@ namespace Ezfx.Csv.ItemWizards
             //    Config.Name = tableComboBox.SelectedItem.ToString();
             //encodingComboBox.SelectedItem
             //}
-            Config.CodePage = ((Encoding)encodingComboBox.SelectedItem).CodePage;
+            Config.CodePage = ((EncodingComboboxItem)encodingComboBox.SelectedItem).CodePage;
             Display();
         }
     }

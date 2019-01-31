@@ -22,8 +22,8 @@
     <ProjectGuid>{9CC3B62F-5619-4C6E-A5FF-2B07903AD1C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ezfx.Csv2Entity.VSIX</RootNamespace>
-    <AssemblyName>Ezfx.Csv2Entity.VSIX</AssemblyName>
+    <RootNamespace>Ezfx.Csv2Entity.Extension</RootNamespace>
+    <AssemblyName>Ezfx.Csv2Entity.Extension</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
