@@ -78,7 +78,7 @@ namespace Ezfx.Csv
             if(preFilter!=null)
             {
                 lines.RemoveAll(preFilter);
-                newContent = string.Join("\r\n", lines);
+                newContent = string.Join("\r\n", lines.ToArray());
             }
             else
             {

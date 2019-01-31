@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageConfigSample", "Sam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ezfx.Csv.Test", "Core\Ezfx.Csv.Test\Ezfx.Csv.Test.csproj", "{0B8A26EB-25DE-4CA4-BBF0-57BCD86AF922}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ezfx.Csv2Entity.VSIX", "Templates\Ezfx.Csv2Entity.VSIX\Ezfx.Csv2Entity.VSIX.csproj", "{9CC3B62F-5619-4C6E-A5FF-2B07903AD1C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ezfx.Csv2Entity.Extension", "Templates\Ezfx.Csv2Entity.VSIX\Ezfx.Csv2Entity.Extension.csproj", "{9CC3B62F-5619-4C6E-A5FF-2B07903AD1C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ezfx.Csv.Tools.DocumentGenerator", "Ezfx.Csv.Tools.DocumentGenerator\Ezfx.Csv.Tools.DocumentGenerator.csproj", "{B6CB2F32-382C-4A06-A641-2F245175B15E}"
 EndProject

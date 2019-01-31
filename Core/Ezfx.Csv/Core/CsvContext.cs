@@ -1,6 +1,9 @@
-﻿using System;
+﻿//#define NETSTANDARD
+#undef NETSTANDARD
+using System;
 using System.Data;
 using System.Collections.Generic;
+
 #if !NETSTANDARD
 using System.Data.OleDb;
 #endif
@@ -13,6 +16,7 @@ namespace Ezfx.Csv
 {
     public static partial class CsvContext
     {
+
         public const string DialogFilter = "CSV Files (*.csv)|*.csv| Access Files(*.mdb;*.accdb) |*.mdb;*.accdb| Excel Files (*.xls;*.xlsx)|*.xls;*.xlsx";
 
         public static string FixField(string value, string delimiter)
@@ -187,9 +191,35 @@ namespace Ezfx.Csv
                     }
                 }
             }
+
+            //checked if the last record is empty
+            var last = records.Last();
+            var isEmpty = false;
+            if(last.Count==0)
+            {
+                isEmpty = true;
+            }
+            else
+            {
+                foreach (string s in last)
+                {
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        isEmpty = true;
+                        break;
+                    }
+                }
+            }
+
+
+            if (isEmpty)
+            {
+                records.Remove(last);
+            }
+
             return records.ToArray();
         }
-
+        
         private static void AddField(CsvRecord currentRecord, ref string currentField, ref bool concatenating)
         {
             currentRecord.Add(currentField);
