@@ -13,5 +13,5 @@ using System;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("1.0.0.16100")]
-[assembly: AssemblyFileVersion("1.0.0.16100")]
+[assembly: AssemblyVersion("2.2.8.203")]
+[assembly: AssemblyFileVersion("2.2.8.203")]

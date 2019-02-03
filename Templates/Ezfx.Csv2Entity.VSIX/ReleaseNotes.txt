@@ -1,1 +1,8 @@
-﻿Welcome
+﻿2.2.8 2/3/2019
+Remove \n in the last title of columns.
+
+2.2.3 1/31/2019
+Fixed a bug. The last record was empty.
+
+2.2.0 1/29/2019
+Applied RCF 4180 Standard.

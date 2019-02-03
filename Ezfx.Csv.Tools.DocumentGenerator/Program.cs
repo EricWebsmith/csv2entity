@@ -10,7 +10,9 @@ namespace Ezfx.Csv.Tools.DocumentGenerator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            //Application.Run(new MainForm());
+            var form = new Ezfx.Csv.ItemWizards.ConfigForm();
+            Application.Run(form);
         }
     }
 }

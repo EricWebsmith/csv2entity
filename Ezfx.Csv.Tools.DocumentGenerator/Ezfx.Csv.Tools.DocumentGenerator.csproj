@@ -85,6 +85,10 @@
       <Project>{05071fa2-ae47-4f14-9fb5-bc838f87aa30}</Project>
       <Name>Ezfx.Csv</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Templates\Ezfx.Csv.Templates\Ezfx.Csv.ItemWizards.csproj">
+      <Project>{b3dfe103-2ab8-43bb-9b26-4643754d1d97}</Project>
+      <Name>Ezfx.Csv.ItemWizards</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
