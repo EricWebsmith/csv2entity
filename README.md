@@ -1,7 +1,5 @@
 # CSV2Entity
 
-
-[![ericfeed MyGet Build Status](https://www.myget.org/BuildSource/Badge/ericfeed?identifier=f8245f2f-8154-494a-be4e-de175e194be5)](https://www.myget.org/)
 [![Build status](https://ci.appveyor.com/api/projects/status/637a70iwpkcusjab?svg=true)](https://ci.appveyor.com/project/juwikuang/csv2entity)
 [![Build Status](https://dev.azure.com/juwikuang/CSV2Entity/_apis/build/status/juwikuang.csv2entity?branchName=master)](https://dev.azure.com/juwikuang/CSV2Entity/_build/latest?definitionId=1?branchName=master)
 
