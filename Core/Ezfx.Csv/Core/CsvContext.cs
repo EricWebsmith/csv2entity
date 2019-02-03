@@ -124,12 +124,13 @@ namespace Ezfx.Csv
                         }
 
                     }
-                    else //startWithDoubleQuote
+                    else //not startWithDoubleQuote
                     {
                         //if this is the last char
                         if (i + 1 == charArray.Length)
                         {
                             currentField += currentChar;
+                            currentField = currentField.Trim();
                             currentRecord.Add(currentField);
                             continue;
                         }
@@ -222,7 +223,7 @@ namespace Ezfx.Csv
         
         private static void AddField(CsvRecord currentRecord, ref string currentField, ref bool concatenating)
         {
-            currentRecord.Add(currentField);
+            currentRecord.Add(currentField.Trim());
             currentField = string.Empty;
             concatenating = false;
         }
@@ -437,7 +438,7 @@ namespace Ezfx.Csv
             dt.Locale = CultureInfo.InvariantCulture;
             using (StreamReader sr = new StreamReader(path, encoding))
             {
-                string firstLine = sr.ReadLine();
+                string firstLine = sr.ReadLine().Trim();
                 string[] titles = CsvContext.GetRecords(firstLine, delimiter).First().ToArray();
 
                 for (int i = 0; i < titles.Length; i++)
