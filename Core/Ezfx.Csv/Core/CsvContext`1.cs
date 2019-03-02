@@ -132,7 +132,7 @@ namespace Ezfx.Csv
         public static T[] ReadContext<T>(IEnumerable<string> records, CsvConfig config, Predicate<string> preFilter, Predicate<T> postFilter) where T : new()
         {
             List<string> list = records.ToList(); //all.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            list.RemoveAll(line => line.StartsWith("#"));
+            //list.RemoveAll(line => line.StartsWith("#")); //removed according to Redundant comment handling code? #11
             if (preFilter != null)
             {
                 list.RemoveAll(preFilter);
