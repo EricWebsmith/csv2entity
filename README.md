@@ -98,95 +98,93 @@ Add C# Class:
 
 ![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/addcs.png)
 
-After click of add, a CSV Generate Wizard Window will be displayed, you can select a CSV file by click the browse button, this Wizard support Excel(xls, xlsx) and Access files(mdb, accdb), too. You specify the encoding for the CSV file and table name for Excel and Access file.
+After click of add, a CSV Generation Wizard Window will be displayed, you can select a CSV file by click the browse button, this Wizard support Excel(xls, xlsx) and Access files(mdb, accdb), too. You specify the encoding for the CSV file and table name for Excel and Access file.
+
+![CSV Generation Wizard](https://github.com/juwikuang/csv2entity/blob/master/pics/configform.jpg)
 
  
 
 The following is the generated file:
 
-The C# file:
+The C# code:
 
-![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/csclass.png)
+```
+using Ezfx.Csv;
+
+namespace Cars.CS
+{
+
+    [CsvObject(CodePage = 936, Description = "", HasHeader = true, Name = "", MappingType = CsvMappingType.Title, Delimiter = ",")]
+    public class CarCsv
+    {
+
+        /// <summary>
+        /// 0, Year
+        /// </summary>
+        [SystemCsvColumn(Name = "Year", Ordinal = 0, Alias = "")]
+        public string Year { get; set; }
+
+
+        /// <summary>
+        /// 1, Make
+        /// </summary>
+        [SystemCsvColumn(Name = "Make", Ordinal = 1, Alias = "")]
+        public string Make { get; set; }
+
+
+        /// <summary>
+        /// 2, Model
+        /// </summary>
+        [SystemCsvColumn(Name = "Model", Ordinal = 2, Alias = "")]
+        public string Model { get; set; }
+
+
+        /// <summary>
+        /// 3, Length
+        /// </summary>
+        [SystemCsvColumn(Name = "Length", Ordinal = 3, Alias = "")]
+        public string Length { get; set; }
+
+
+    }
+}
+
+```
 
 The VB code:
 
 ```
 Imports Ezfx.Csv
 
-<CsvObject(CodePage:=65001, Description:="", HasHeader:=True, MappingType:=Ezfx.Csv.CsvMappingType.Title, Name:="", Delimiter:=",")> _
-Public Class Csv1
+<CsvObject(CodePage:=936, Description:="", HasHeader:=True, MappingType:=Ezfx.Csv.CsvMappingType.Title, Name:="", Delimiter:=",")> _
+Public Class CarCsv
 
     ''' <summary>
-    ''' 0, file_format
+    ''' 0, Year
     ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=0, Name:="file_format")> _
-    Public Property file_format() As String
-
-
-    ''' <summary>
-    ''' 1, languages
-    ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=1, Name:="languages")> _
-    Public Property languages() As String
+    <SystemCsvColumn(Alias:="", Ordinal:=0, Name:="Year")> _
+    Public Property Year() As String
 
 
     ''' <summary>
-    ''' 2, no
+    ''' 1, Make
     ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=2, Name:="no")> _
-    Public Property no() As String
+    <SystemCsvColumn(Alias:="", Ordinal:=1, Name:="Make")> _
+    Public Property Make() As String
 
 
     ''' <summary>
-    ''' 3, publish_time
+    ''' 2, Model
     ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=3, Name:="publish_time")> _
-    Public Property publish_time() As String
+    <SystemCsvColumn(Alias:="", Ordinal:=2, Name:="Model")> _
+    Public Property Model() As String
 
 
     ''' <summary>
-    ''' 4, source
+    ''' 3, Length
     ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=4, Name:="source")> _
-    Public Property source() As String
-
-
-    ''' <summary>
-    ''' 5, srt_page_url
-    ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=5, Name:="srt_page_url")> _
-    Public Property srt_page_url() As String
-
-
-    ''' <summary>
-    ''' 6, title
-    ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=6, Name:="title")> _
-    Public Property title() As String
-
-
-    ''' <summary>
-    ''' 7, title_en
-    ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=7, Name:="title_en")> _
-    Public Property title_en() As String
-
-
-    ''' <summary>
-    ''' 8, tv_movie
-    ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=8, Name:="tv_movie")> _
-    Public Property tv_movie() As String
-
-
-    ''' <summary>
-    ''' 9, version
-    ''' </summary>
-    <SystemCsvColumn(Alias:="", Ordinal:=9, Name:="version")> _
-    Public Property version() As String
-
-
-
+    <SystemCsvColumn(Alias:="", Ordinal:=3, Name:="Length")> _
+    Public Property Length() As String
 
 End Class
 ```
@@ -197,13 +195,13 @@ End Class
 The following code reads a csv file and put data to Csv Objects.
 
 ```
-ImdbCsv[] imdbs = CsvContext.ReadFile<ImdbCsv>("imdb.csv");
+CarCsv[] imdbs = CsvContext.ReadFile<ImdbCsv>("cars.csv");
 ```
 
 You can also provide csv content as a string
 
 ```
-ImdbCsv[] imdbs = CsvContext.ReadContext<ImdbCsv>("...");
+CarCsv[] imdbs = CsvContext.ReadContext<CarCsv>("...");
 ```
  
 
