@@ -55,23 +55,24 @@ In order to build CSV entities, we need something more. Csharp’s Attribute Mec
 
 With CsvFieldAttribute, now we can decorate our own class.
 
+	[CsvObject(CodePage = 936, Description = "", HasHeader = true, Name = "")]
 	public class Car
 
 	{
 
-       [CsvField(Name = "Year", Order = 0)]
+       [SystemCsvColumn(Name = "Year", Order = 0)]
 
        public string Year { get; set; }
 
-       [CsvField(Name = "Make", Order = 1)]
+       [SystemCsvColumn(Name = "Make", Order = 1)]
 
        public string Make { get; set; }
 
-       [CsvField(Name = "Model", Order = 2)]
+       [SystemCsvColumn(Name = "Model", Order = 2)]
 
        public string Model { get; set; }
 
-       [CsvField(Name = "Length", Order = 3)]
+       [SystemCsvColumn(Name = "Length", Order = 3)]
 
        public string Length { get; set; }
 
@@ -189,11 +190,6 @@ Public Class Csv1
 
 End Class
 ```
-
-This is a .Net 3.5 Version of VB file. For the 4.0 Version, the get and set body can be omitted. I will add this feature in the coming version.
-
- 
-
  
 
 ## CSV Read
