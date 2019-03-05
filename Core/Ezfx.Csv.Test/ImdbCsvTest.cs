@@ -1,5 +1,7 @@
 ﻿using Ezfx.Csv;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace Ezfx.Csv.Test
 {
@@ -104,10 +106,42 @@ namespace Ezfx.Csv.Test
     [TestClass]
     public class ImdbCsvTest
     {
+
         [TestMethod]
         public void ReadTest()
         {
-            var imdbItems = Ezfx.Csv.CsvContext.ReadFile<ImdbCsv>("imdb.csv");
+            ImdbCsv[] imdbs = CsvContext.ReadFile<ImdbCsv>("imdb.csv");
+            Assert.AreEqual(8, imdbs[3].rating);
+            Assert.AreEqual("Adventure,Comedy,Drama", imdbs[8].genres);
+            Assert.AreEqual("Interstellar", imdbs[50].title);
+            //linux removes \r 
+            Assert.AreEqual("Comedy,\r\nDrama,\r\nMusic".Replace("\r", ""), imdbs[3].genres.Replace("\r", ""));
+
+            Assert.AreEqual("In 1862, Amsterdam Vallon returns to the Five Points area of \"New York\" City seeking revenge against Bill the Butcher, his father's killer.", imdbs[10].summary);
+        }
+
+        [TestMethod]
+        public void ReadWriteTest()
+        {
+            var items = Ezfx.Csv.CsvContext.ReadFile<ImdbCsv>("imdb.csv");
+            var newfile = Guid.NewGuid().ToString();
+            Ezfx.Csv.CsvContext.WriteFile(newfile, items);
+            var newItems = Ezfx.Csv.CsvContext.ReadFile<ImdbCsv>(newfile);
+            Assert.AreEqual(items.Length, newItems.Length);
+            Assert.AreEqual(items[0].author, newItems[0].author);
+            Assert.AreEqual(items[0].chinese_name, newItems[0].chinese_name);
+            Assert.AreEqual(items[0].country, newItems[0].country);
+            Assert.AreEqual(items[0].end_year, newItems[0].end_year);
+            Assert.AreEqual(items[0].genres, newItems[0].genres);
+            Assert.AreEqual(items[0].poster, newItems[0].poster);
+            Assert.AreEqual(items[0].published, newItems[0].published);
+            Assert.AreEqual(items[0].rating, newItems[0].rating);
+            Assert.AreEqual(items[0].start_year, newItems[0].start_year);
+            Assert.AreEqual(items[0].summary, newItems[0].summary);
+            Assert.AreEqual(items[0].title, newItems[0].title);
+            Assert.AreEqual(items[0].video_poster, newItems[0].video_poster);
+            Assert.AreEqual(items[0].video_url, newItems[0].video_url);
+            File.Delete(newfile);
         }
     }
 }

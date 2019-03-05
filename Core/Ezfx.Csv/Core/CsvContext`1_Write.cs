@@ -52,16 +52,18 @@ namespace Ezfx.Csv
 
         public static void WriteFile<T>(string path, IEnumerable<T> objects) where T : new()
         {
-            WriteFile<T>(path, objects, CsvConfig.Default);
+            CsvConfig config = new CsvConfig(typeof(T));
+            WriteFile<T>(path, objects, config);
         }
 
         public static void WriteFile<T>(string path, IEnumerable<T> objects, CsvConfig config) where T : new()
         {
+
             if (config == null)
             {
                 config = CsvConfig.Default;
             }
-            Encoding encoding = Encoding.Unicode;
+            Encoding encoding = Encoding.UTF8;
             if (config.CodePage != 0)
             {
                 encoding = Encoding.GetEncoding(config.CodePage);
@@ -73,7 +75,7 @@ namespace Ezfx.Csv
             }
         }
 
-        private static void WriteFile<T>(StreamWriter sw, IEnumerable< T> objects, CsvConfig config) where T : new()
+        private static void WriteFile<T>(StreamWriter sw, IEnumerable<T> objects, CsvConfig config) where T : new()
         {
             CsvPropertyInfo[] properties = GetPropertyInfos<T>();
 
