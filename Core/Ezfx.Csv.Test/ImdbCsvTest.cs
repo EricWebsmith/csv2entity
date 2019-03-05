@@ -1,4 +1,5 @@
 ﻿using Ezfx.Csv;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Ezfx.Csv.Test
 {
@@ -98,5 +99,15 @@ namespace Ezfx.Csv.Test
         public string video_url { get; set; }
 
 
+    }
+
+    [TestClass]
+    public class ImdbCsvTest
+    {
+        [TestMethod]
+        public void ReadTest()
+        {
+            var imdbItems = Ezfx.Csv.CsvContext.ReadFile<ImdbCsv>("imdb.csv");
+        }
     }
 }

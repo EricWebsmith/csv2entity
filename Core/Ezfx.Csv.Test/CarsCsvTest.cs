@@ -19,7 +19,7 @@ namespace Ezfx.Csv.Test
     }
 
     [TestClass]
-    public class CsvContextTest
+    public class CarsCsvTest
     {
         [TestMethod]
         public void GetFieldsSimpleTest()

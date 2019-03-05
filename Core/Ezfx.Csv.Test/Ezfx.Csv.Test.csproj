@@ -55,12 +55,15 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContextTest.cs" />
-    <Compile Include="ImdbCsv.cs" />
+    <Compile Include="AssociationCsvTest.cs" />
+    <Compile Include="ImdbCsvTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CsvContextTest.cs" />
+    <Compile Include="CarsCsvTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="association.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="imdb.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

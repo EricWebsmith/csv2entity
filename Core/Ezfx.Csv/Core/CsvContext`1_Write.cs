@@ -50,6 +50,11 @@ namespace Ezfx.Csv
             return string.Join(config.Delimiter, fields.ToArray());
         }
 
+        public static void WriteFile<T>(string path, IEnumerable<T> objects) where T : new()
+        {
+            WriteFile<T>(path, objects, CsvConfig.Default);
+        }
+
         public static void WriteFile<T>(string path, IEnumerable<T> objects, CsvConfig config) where T : new()
         {
             if (config == null)
@@ -75,19 +80,23 @@ namespace Ezfx.Csv
 
             if (config.HasHeader)
             {
-                foreach (CsvPropertyInfo csvPi in properties)
+                for(int i=0;i< properties.Length-1;i++)
                 {
-                    sw.Write(FixField(csvPi.Attribute.Name, config.Delimiter) + config.Delimiter);
+                    sw.Write(FixField(properties[i].Attribute.Name, config.Delimiter) );
+                    sw.Write(config.Delimiter);
                 }
+                sw.Write(FixField(properties[properties.Length - 1].Attribute.Name, config.Delimiter));
                 sw.WriteLine();
             }
 
             foreach (T o in objects)
             {
-                foreach (CsvPropertyInfo csvPi in properties)
+                for (int i = 0; i < properties.Length - 1; i++)
                 {
-                    sw.Write(FixField(csvPi.PropertyInfo.GetValue(o, null)?.ToString(), config.Delimiter) + config.Delimiter);
+                    sw.Write(FixField(properties[i].PropertyInfo.GetValue(o, null)?.ToString(), config.Delimiter));
+                    sw.Write(config.Delimiter);
                 }
+                sw.Write(FixField(properties[properties.Length - 1].PropertyInfo.GetValue(o, null)?.ToString(), config.Delimiter));
                 sw.WriteLine();
             }
             sw.Flush();

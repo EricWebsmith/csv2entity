@@ -26,10 +26,14 @@ namespace Ezfx.Csv
                 return string.Empty;
             }
 
-            if (value.Contains(delimiter))
+            if (new List<string> { delimiter, "\r", "\n" }.Any(s => value.Contains(s)))
             {
-
                 return "\"" + value + "\"";
+            }
+
+            if (value.Contains("\""))
+            {
+                return "\"" + value.Replace("\"","\"\"") + "\"";
             }
             return value;
         }
