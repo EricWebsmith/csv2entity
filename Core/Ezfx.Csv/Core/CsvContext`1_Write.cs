@@ -23,7 +23,6 @@ namespace Ezfx.Csv
                 foreach (CsvPropertyInfo csvPi in csvPropertyInfos)
                 {
                     titles.Add(FixField(csvPi.Attribute.Name, config.Delimiter));
-                    //sb.Append(CsvContext.FixField(csvPi.Attribute.Name, config.Delimiter) + config.Delimiter);
                 }
                 sb.AppendLine(string.Join(config.Delimiter, titles.ToArray()));
             }
@@ -41,13 +40,19 @@ namespace Ezfx.Csv
             {
                 config = new CsvConfig(typeof(T));
             }
-            //StringBuilder sb = new StringBuilder();
+
             List<string> fields = new List<string>();
             foreach (CsvPropertyInfo csvPi in csvPropertyInfos)
             {
                 fields.Add(FixField(csvPi.PropertyInfo.GetValue(entity, null).ToString(), config.Delimiter));
             }
             return string.Join(config.Delimiter, fields.ToArray());
+        }
+
+        public static void WriteFile<T>(string path, IEnumerable<T> objects, Encoding encoding) where T : new()
+        {
+            CsvConfig config = new CsvConfig(typeof(T));
+            WriteFile<T>(path, objects, config, encoding);
         }
 
         public static void WriteFile<T>(string path, IEnumerable<T> objects) where T : new()
@@ -58,15 +63,25 @@ namespace Ezfx.Csv
 
         public static void WriteFile<T>(string path, IEnumerable<T> objects, CsvConfig config) where T : new()
         {
+            Encoding encoding = Encoding.UTF8;
+            
+            if (config.CodePage != 0)
+            {
+                encoding = Encoding.GetEncoding(config.CodePage);
+            }
+
+            using (StreamWriter sw = new StreamWriter(path, false, encoding))
+            {
+                WriteFile(sw, objects, config);
+            }
+        }
+
+        public static void WriteFile<T>(string path, IEnumerable<T> objects, CsvConfig config, Encoding encoding) where T : new()
+        {
 
             if (config == null)
             {
                 config = CsvConfig.Default;
-            }
-            Encoding encoding = Encoding.UTF8;
-            if (config.CodePage != 0)
-            {
-                encoding = Encoding.GetEncoding(config.CodePage);
             }
 
             using (StreamWriter sw = new StreamWriter(path, false, encoding))

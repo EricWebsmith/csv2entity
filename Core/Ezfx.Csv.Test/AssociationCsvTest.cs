@@ -65,5 +65,20 @@ namespace Ezfx.Csv.Test
             Assert.AreEqual(items[0].Title, newItems[0].Title);
             File.Delete(newfile);
         }
+
+        [TestMethod]
+        public void ReadWriteTest2()
+        {
+            var items = Ezfx.Csv.CsvContext.ReadFile<AssociationCsv>("association2.csv");
+            var newfile = Guid.NewGuid().ToString();
+            Ezfx.Csv.CsvContext.WriteFile(newfile, items);
+            var newItems = Ezfx.Csv.CsvContext.ReadFile<AssociationCsv>(newfile);
+            Assert.AreEqual(items.Length, newItems.Length);
+            Assert.AreEqual(items[0].AlignFile, newItems[0].AlignFile);
+            Assert.AreEqual(items[0].AudioFile, newItems[0].AudioFile);
+            Assert.AreEqual(items[0].TextFile, newItems[0].TextFile);
+            Assert.AreEqual(items[0].Title, newItems[0].Title);
+            File.Delete(newfile);
+        }
     }
 }

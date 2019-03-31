@@ -26,15 +26,11 @@ namespace Ezfx.Csv
                 return string.Empty;
             }
 
-            if (new List<string> { delimiter, "\r", "\n" }.Any(s => value.Contains(s)))
+            if (new List<string> { delimiter, "\r", "\n", "\"" }.Any(s => value.Contains(s)))
             {
-                return "\"" + value + "\"";
+                return "\"" + value.Replace("\"", "\"\"") + "\"";
             }
 
-            if (value.Contains("\""))
-            {
-                return "\"" + value.Replace("\"","\"\"") + "\"";
-            }
             return value;
         }
 
@@ -66,7 +62,7 @@ namespace Ezfx.Csv
             {
 
                 var currentChar = charArray[i];
-                var nextChar = i + 1 < charArray.Length? charArray[i + 1] : '\0';
+                var nextChar = i + 1 < charArray.Length ? charArray[i + 1] : '\0';
 
                 if (startRecord)
                 {
@@ -103,7 +99,7 @@ namespace Ezfx.Csv
                             {
                                 currentField += currentChar;
                                 AddField(currentRecord, ref currentField, ref concatenating);
-                                
+
                                 continue;
                             }
 
@@ -139,7 +135,7 @@ namespace Ezfx.Csv
                             continue;
                         }
 
-                        switch(currentChar)
+                        switch (currentChar)
                         {
                             case '\r':
                             case '\n':
@@ -165,8 +161,8 @@ namespace Ezfx.Csv
                     {
                         case '\r':
                         case '\n':
-                            var previousChar =i>0? charArray[i - 1]:'\0';
-                            if (previousChar==',')
+                            var previousChar = i > 0 ? charArray[i - 1] : '\0';
+                            if (previousChar == ',')
                             {
                                 currentRecord.Add(string.Empty);
                                 currentRecord = new CsvRecord();
@@ -200,7 +196,7 @@ namespace Ezfx.Csv
             //checked if the last record is empty
             var last = records.Last();
             var isEmpty = false;
-            if(last.Count==0)
+            if (last.Count == 0)
             {
                 isEmpty = true;
             }
@@ -224,7 +220,7 @@ namespace Ezfx.Csv
 
             return records.ToArray();
         }
-        
+
         private static void AddField(CsvRecord currentRecord, ref string currentField, ref bool concatenating)
         {
             currentRecord.Add(currentField.Trim());

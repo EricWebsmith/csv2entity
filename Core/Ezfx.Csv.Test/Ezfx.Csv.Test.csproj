@@ -64,6 +64,9 @@
     <None Include="association.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="association2.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="imdb.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
