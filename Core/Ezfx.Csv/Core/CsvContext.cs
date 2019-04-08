@@ -16,9 +16,11 @@ namespace Ezfx.Csv
 {
     public static partial class CsvContext
     {
-
+#if NETSTANDARD
+        public const string DialogFilter = "CSV Files (*.csv)|*.csv";
+#else
         public const string DialogFilter = "CSV Files (*.csv)|*.csv| Access Files(*.mdb;*.accdb) |*.mdb;*.accdb| Excel Files (*.xls;*.xlsx)|*.xls;*.xlsx";
-
+#endif
         public static string FixField(string value, string delimiter)
         {
             if (value == null)
