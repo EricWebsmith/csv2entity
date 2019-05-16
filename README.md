@@ -47,6 +47,7 @@ Example of a USA/UK CSV file
 
 In order to build CSV entities, we need something more. Csharp’s Attribute Mechanism provides us what we need by decorate CSV class properties with a custom attribute. Custom attribute defines CVS field’s display name and order. Here is the CsvFieldAttribute:
 
+```csharp
 	public class CsvFieldAttribute:Attribute
 
 	{
@@ -56,9 +57,11 @@ In order to build CSV entities, we need something more. Csharp’s Attribute Mec
        public int Order { get; set; }
 
 	}
+```
 
 With CsvFieldAttribute, now we can decorate our own class.
 
+```csharp
 	[CsvObject(CodePage = 936, Description = "", HasHeader = true, Name = "")]
 	public class Car
 
@@ -81,6 +84,7 @@ With CsvFieldAttribute, now we can decorate our own class.
        public string Length { get; set; }
 
 	}
+```
 
 ## Generate CSV Class
 
@@ -112,7 +116,7 @@ The following is the generated file:
 
 The C# code:
 
-```
+```csharp
 using Ezfx.Csv;
 
 namespace Cars.CS
@@ -157,7 +161,7 @@ namespace Cars.CS
 
 The VB code:
 
-```
+```vbnet
 Imports Ezfx.Csv
 
 <CsvObject(CodePage:=936, Description:="", HasHeader:=True, MappingType:=Ezfx.Csv.CsvMappingType.Title, Name:="", Delimiter:=",")> _
@@ -198,13 +202,13 @@ End Class
 
 The following code reads a csv file and put data to Csv Objects.
 
-```
+```csharp
 CarCsv[] imdbs = CsvContext.ReadFile<ImdbCsv>("cars.csv");
 ```
 
 You can also provide csv content as a string
 
-```
+```csharp
 CarCsv[] imdbs = CsvContext.ReadContext<CarCsv>("...");
 ```
  
