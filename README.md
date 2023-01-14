@@ -1,11 +1,17 @@
 # CSV2Entity
 
-Version: draft
+[![Build status](https://ci.appveyor.com/api/projects/status/637a70iwpkcusjab?svg=true)](https://ci.appveyor.com/project/juwikuang/csv2entity)
 
-Date:2011/11/27
 
-By Zhou Weiguang 
+## Install
 
+### Install Core from Nuget
+
+* [CSV2Entity](https://www.nuget.org/packages/Ezfx.Csv) [![Nuget](http://img.shields.io/nuget/v/Ezfx.Csv.svg?maxAge=10800)](https://www.nuget.org/packages/Ezfx.Csv/)
+
+### Instial Visual Studio Extension from marketplace
+
+https://marketplace.visualstudio.com/search?term=ezfx.csv2entity&target=VS&category=All%20categories&vsVersion=vs2019&sortBy=Relevance
 
 To view the introduce Video please visit:
 
@@ -37,6 +43,7 @@ Example of a USA/UK CSV file
 
 In order to build CSV entities, we need something more. Csharp’s Attribute Mechanism provides us what we need by decorate CSV class properties with a custom attribute. Custom attribute defines CVS field’s display name and order. Here is the CsvFieldAttribute:
 
+```csharp
 	public class CsvFieldAttribute:Attribute
 
 	{
@@ -46,30 +53,34 @@ In order to build CSV entities, we need something more. Csharp’s Attribute Mec
        public int Order { get; set; }
 
 	}
+```
 
 With CsvFieldAttribute, now we can decorate our own class.
 
+```csharp
+	[CsvObject(CodePage = 936, Description = "", HasHeader = true, Name = "")]
 	public class Car
 
 	{
 
-       [CsvField(Name = "Year", Order = 0)]
+       [SystemCsvColumn(Name = "Year", Order = 0)]
 
        public string Year { get; set; }
 
-       [CsvField(Name = "Make", Order = 1)]
+       [SystemCsvColumn(Name = "Make", Order = 1)]
 
        public string Make { get; set; }
 
-       [CsvField(Name = "Model", Order = 2)]
+       [SystemCsvColumn(Name = "Model", Order = 2)]
 
        public string Model { get; set; }
 
-       [CsvField(Name = "Length", Order = 3)]
+       [SystemCsvColumn(Name = "Length", Order = 3)]
 
        public string Length { get; set; }
 
 	}
+```
 
 ## Generate CSV Class
 
@@ -78,47 +89,124 @@ So, do we need to create CSV classes manually? Of cause not. So I developed the 
 To Generate CSV Classes, you have to install the VSIX file:
 
       
-![](./pics/vsix.png)
+![VSIX file](https://github.com/juwikuang/csv2entity/raw/master/pics/vsix.png)
  
 
 After the installation a new template called EZFX CSV Class will be displayed in your Visual Studio 2010 both in language VB and C#.
 
 Add VB Class:
 
-![](./pics/addvb.png)
+![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/addvb.png)
 
 Add C# Class:
 
-![](./pics/addcs.png)
+![CS](https://github.com/juwikuang/csv2entity/raw/master/pics/addcs.png)
 
-After click of add, a CSV Generate Wizard Window will be displayed, you can select a CSV file by click the browse button, this Wizard support Excel(xls, xlsx) and Access files(mdb, accdb), too. You specify the encoding for the CSV file and table name for Excel and Access file.
+After click of add, a CSV Generation Wizard Window will be displayed, you can select a CSV file by click the browse button, this Wizard support Excel(xls, xlsx) and Access files(mdb, accdb), too. You specify the encoding for the CSV file and table name for Excel and Access file.
+
+![CSV Generation Wizard](https://github.com/juwikuang/csv2entity/blob/master/pics/configform.jpg)
 
  
 
 The following is the generated file:
 
-The C# file:
+The C# code:
 
-![](./pics/csclass.png)
+```csharp
+using Ezfx.Csv;
 
-The VB file:
+namespace Cars.CS
+{
 
-![](./pics/vbclass.png)
+    [CsvObject(CodePage = 936, Description = "", HasHeader = true, Name = "", MappingType = CsvMappingType.Title, Delimiter = ",")]
+    public class CarCsv
+    {
 
-This is a .Net 3.5 Version of VB file. For the 4.0 Version, the get and set body can be omitted. I will add this feature in the coming version.
+        /// <summary>
+        /// 0, Year
+        /// </summary>
+        [SystemCsvColumn(Name = "Year", Ordinal = 0, Alias = "")]
+        public string Year { get; set; }
 
+
+        /// <summary>
+        /// 1, Make
+        /// </summary>
+        [SystemCsvColumn(Name = "Make", Ordinal = 1, Alias = "")]
+        public string Make { get; set; }
+
+
+        /// <summary>
+        /// 2, Model
+        /// </summary>
+        [SystemCsvColumn(Name = "Model", Ordinal = 2, Alias = "")]
+        public string Model { get; set; }
+
+
+        /// <summary>
+        /// 3, Length
+        /// </summary>
+        [SystemCsvColumn(Name = "Length", Ordinal = 3, Alias = "")]
+        public string Length { get; set; }
+
+
+    }
+}
+
+```
+
+The VB code:
+
+```vbnet
+Imports Ezfx.Csv
+
+<CsvObject(CodePage:=936, Description:="", HasHeader:=True, MappingType:=Ezfx.Csv.CsvMappingType.Title, Name:="", Delimiter:=",")> _
+Public Class CarCsv
+
+    ''' <summary>
+    ''' 0, Year
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=0, Name:="Year")> _
+    Public Property Year() As String
+
+
+    ''' <summary>
+    ''' 1, Make
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=1, Name:="Make")> _
+    Public Property Make() As String
+
+
+    ''' <summary>
+    ''' 2, Model
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=2, Name:="Model")> _
+    Public Property Model() As String
+
+
+    ''' <summary>
+    ''' 3, Length
+    ''' </summary>
+    <SystemCsvColumn(Alias:="", Ordinal:=3, Name:="Length")> _
+    Public Property Length() As String
+
+End Class
+```
  
 
- 
+## CSV Read
 
-## CSV Reader
+The following code reads a csv file and put data to Csv Objects.
 
-At last, we need a way to read CSV files and put data into the CSV classes. The method is: split CSV line to an array, iterate over that array get index of each field, and reflect the CSV class (i.e. Cars above) get order of each property. When index of field and order of property matches each other, transmit the value.
+```csharp
+CarCsv[] imdbs = CsvContext.ReadFile<ImdbCsv>("cars.csv");
+```
 
- 
+You can also provide csv content as a string
 
-Following is the result from Visual Studio 11 watch window.
-
+```csharp
+CarCsv[] imdbs = CsvContext.ReadContext<CarCsv>("...");
+```
  
 
 ## Document Generator
