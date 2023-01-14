@@ -11,7 +11,7 @@
 
 ### Instial Visual Studio Extension from marketplace
 
-https://marketplace.visualstudio.com/items?itemName=EricZhou.int123
+https://marketplace.visualstudio.com/search?term=ezfx.csv2entity&target=VS&category=All%20categories&vsVersion=vs2019&sortBy=Relevance
 
 To view the introduce Video please visit:
 
