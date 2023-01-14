@@ -73,7 +73,7 @@ namespace Ezfx.Csv
 
     public class CsvConfig : INotifyPropertyChanged
     {
-        const int UNICODE_CODEPAGE = 1200;
+        const int UNICODE_CODEPAGE = 65001;
 
         #region Properties
         private string _Name = string.Empty;

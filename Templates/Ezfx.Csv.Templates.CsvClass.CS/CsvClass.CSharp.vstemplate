@@ -21,7 +21,7 @@
     <ProjectItem ReplaceParameters="true">Csv.cs</ProjectItem>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>Ezfx.Csv.ItemWizards, Version=2.2.8.203, Culture=Neutral, PublicKeyToken=f6bc0ca2053018a4</Assembly>
+    <Assembly>Ezfx.Csv.ItemWizards, Version=2.5.8.204, Culture=Neutral, PublicKeyToken=f6bc0ca2053018a4</Assembly>
     <FullClassName>Ezfx.Csv.ItemWizards.CSClassWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

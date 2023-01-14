@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ezfx.Csv.Test</RootNamespace>
     <AssemblyName>Ezfx.Csv.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SccProjectName>SAK</SccProjectName>
@@ -55,12 +55,18 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContextTest.cs" />
-    <Compile Include="ImdbCsv.cs" />
+    <Compile Include="AssociationCsvTest.cs" />
+    <Compile Include="ImdbCsvTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CsvContextTest.cs" />
+    <Compile Include="CarsCsvTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="association.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="association2.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="imdb.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

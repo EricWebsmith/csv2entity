@@ -23,7 +23,6 @@ namespace Ezfx.Csv
                 foreach (CsvPropertyInfo csvPi in csvPropertyInfos)
                 {
                     titles.Add(FixField(csvPi.Attribute.Name, config.Delimiter));
-                    //sb.Append(CsvContext.FixField(csvPi.Attribute.Name, config.Delimiter) + config.Delimiter);
                 }
                 sb.AppendLine(string.Join(config.Delimiter, titles.ToArray()));
             }
@@ -41,7 +40,7 @@ namespace Ezfx.Csv
             {
                 config = new CsvConfig(typeof(T));
             }
-            //StringBuilder sb = new StringBuilder();
+
             List<string> fields = new List<string>();
             foreach (CsvPropertyInfo csvPi in csvPropertyInfos)
             {
@@ -50,13 +49,22 @@ namespace Ezfx.Csv
             return string.Join(config.Delimiter, fields.ToArray());
         }
 
+        public static void WriteFile<T>(string path, IEnumerable<T> objects, Encoding encoding) where T : new()
+        {
+            CsvConfig config = new CsvConfig(typeof(T));
+            WriteFile<T>(path, objects, config, encoding);
+        }
+
+        public static void WriteFile<T>(string path, IEnumerable<T> objects) where T : new()
+        {
+            CsvConfig config = new CsvConfig(typeof(T));
+            WriteFile<T>(path, objects, config);
+        }
+
         public static void WriteFile<T>(string path, IEnumerable<T> objects, CsvConfig config) where T : new()
         {
-            if (config == null)
-            {
-                config = CsvConfig.Default;
-            }
-            Encoding encoding = Encoding.Unicode;
+            Encoding encoding = Encoding.UTF8;
+            
             if (config.CodePage != 0)
             {
                 encoding = Encoding.GetEncoding(config.CodePage);
@@ -68,26 +76,44 @@ namespace Ezfx.Csv
             }
         }
 
-        private static void WriteFile<T>(StreamWriter sw, IEnumerable< T> objects, CsvConfig config) where T : new()
+        public static void WriteFile<T>(string path, IEnumerable<T> objects, CsvConfig config, Encoding encoding) where T : new()
+        {
+
+            if (config == null)
+            {
+                config = CsvConfig.Default;
+            }
+
+            using (StreamWriter sw = new StreamWriter(path, false, encoding))
+            {
+                WriteFile(sw, objects, config);
+            }
+        }
+
+        private static void WriteFile<T>(StreamWriter sw, IEnumerable<T> objects, CsvConfig config) where T : new()
         {
             CsvPropertyInfo[] properties = GetPropertyInfos<T>();
 
 
             if (config.HasHeader)
             {
-                foreach (CsvPropertyInfo csvPi in properties)
+                for(int i=0;i< properties.Length-1;i++)
                 {
-                    sw.Write(FixField(csvPi.Attribute.Name, config.Delimiter) + config.Delimiter);
+                    sw.Write(FixField(properties[i].Attribute.Name, config.Delimiter) );
+                    sw.Write(config.Delimiter);
                 }
+                sw.Write(FixField(properties[properties.Length - 1].Attribute.Name, config.Delimiter));
                 sw.WriteLine();
             }
 
             foreach (T o in objects)
             {
-                foreach (CsvPropertyInfo csvPi in properties)
+                for (int i = 0; i < properties.Length - 1; i++)
                 {
-                    sw.Write(FixField(csvPi.PropertyInfo.GetValue(o, null)?.ToString(), config.Delimiter) + config.Delimiter);
+                    sw.Write(FixField(properties[i].PropertyInfo.GetValue(o, null)?.ToString(), config.Delimiter));
+                    sw.Write(config.Delimiter);
                 }
+                sw.Write(FixField(properties[properties.Length - 1].PropertyInfo.GetValue(o, null)?.ToString(), config.Delimiter));
                 sw.WriteLine();
             }
             sw.Flush();

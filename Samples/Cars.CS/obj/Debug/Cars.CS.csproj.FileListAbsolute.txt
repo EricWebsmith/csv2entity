@@ -1,0 +1,9 @@
+D:\projects\csv2entity\Samples\Cars.CS\bin\Debug\Cars.CS.dll
+D:\projects\csv2entity\Samples\Cars.CS\bin\Debug\Cars.CS.pdb
+D:\projects\csv2entity\Samples\Cars.CS\bin\Debug\Ezfx.Csv.dll
+D:\projects\csv2entity\Samples\Cars.CS\bin\Debug\Ezfx.Csv.pdb
+D:\projects\csv2entity\Samples\Cars.CS\obj\Debug\Cars.CS.csprojAssemblyReference.cache
+D:\projects\csv2entity\Samples\Cars.CS\obj\Debug\Cars.CS.csproj.CoreCompileInputs.cache
+D:\projects\csv2entity\Samples\Cars.CS\obj\Debug\Cars.CS.csproj.CopyComplete
+D:\projects\csv2entity\Samples\Cars.CS\obj\Debug\Cars.CS.dll
+D:\projects\csv2entity\Samples\Cars.CS\obj\Debug\Cars.CS.pdb

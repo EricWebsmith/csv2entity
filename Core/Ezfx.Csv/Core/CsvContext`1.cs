@@ -93,6 +93,7 @@ namespace Ezfx.Csv
             {
                 recoreds.RemoveAt(0);
             }
+
             foreach(var record in recoreds)
             {
                 var item = ReadRecord<T>(record, properties);
@@ -106,76 +107,21 @@ namespace Ezfx.Csv
 
             return items.ToArray();
         }
-        
-        /// <summary>
-        /// use this unless you splited the content a line as a record. (not a physical line)
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="records"></param>
-        /// <param name="config"></param>
-        /// <returns></returns>
-        [Obsolete("", true)]
-        public static T[] ReadContext<T>(IEnumerable<string> records, CsvConfig config) where T : new()
-        {
-            return ReadContext<T>(records, config, null, null);
-        }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="records"></param>
-        /// <param name="config"></param>
-        /// <param name="preFilter">Remove logically invalid lines</param>
-        /// <param name="postFilter">Remove invalid business objects</param>
-        /// <returns></returns>
-        [Obsolete("",true)]
-        public static T[] ReadContext<T>(IEnumerable<string> records, CsvConfig config, Predicate<string> preFilter, Predicate<T> postFilter) where T : new()
-        {
-            List<string> list = records.ToList(); //all.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            list.RemoveAll(line => line.StartsWith("#"));
-            if (preFilter != null)
-            {
-                list.RemoveAll(preFilter);
-            }
-
-            List<T> ts = new List<T>();
-
-            if (config.IsCustomized)
-            {
-                throw new NotImplementedException("IsCustomized");
-            }
-
-            string[] titles = null;
-            if (config.MappingType == CsvMappingType.Title)
-            {
-                titles = list[0].Split(new string[] { config.Delimiter }, StringSplitOptions.None);
-            }
-
-            for (int i = 0; i < titles.Length; i++)
-            {
-                titles[i] = titles[i].Trim(new char[] { '"', ' ' });
-            }
-
-            for (int i = (config.HasHeader ? 1 : 0); i < list.Count; i++)
-            {
-                if (!list[i].StartsWith("#", StringComparison.OrdinalIgnoreCase))
-                {
-                    ts.Add(ReadRecord<T>(list[i], titles, config));
-                }
-            }
-
-            if (postFilter != null)
-            {
-                ts.RemoveAll(postFilter);
-            }
-
-            return ts.ToArray();
-        }
-
+        /*
+         * for data like:
+         Title,TextFile,AudioFile,AlignFile,
+        Chapter I,001_Chapter_I.txt,tessofthedurbervilles_01_hardy_64kb.mp3,tessofthedurbervilles_01_hardy_64kb.json,
+        Chapter II,002_Chapter_II.txt,tessofthedurbervilles_02_hardy_64kb.mp3,tessofthedurbervilles_02_hardy_64kb.json,
+        Chapter III,003_Chapter_III.txt,tessofthedurbervilles_03_hardy_64kb.mp3,tessofthedurbervilles_03_hardy_64kb.json,
+         *
+         * there is always one more column ""
+             */
         private static T ReadRecord<T>(CsvRecord record, List<PropertyInfo> properties) where T : new()
         {
+            //
             T result = new T();
-            for (int i = 0; i < record.Count; i++)
+            for (int i = 0; i < properties.Count; i++)
             {
                 properties[i].SetValueEx(result, record[i]);
             }
@@ -188,25 +134,6 @@ namespace Ezfx.Csv
             List<PropertyInfo> properties = typeof(T).GetProperties().ToList();
             return ReadRecord<T>(record, properties);
         }
-
-        //public static T ReadByOrder<T>(string line, CsvConfig config) where T : new()
-        //{
-        //    string[] fields = CsvContext.GetFields(line, config.Delimiter);
-        //    T result = new T();
-        //    Type t = typeof(T);
-        //    List<PropertyInfo> pis = t.GetProperties().ToList();
-
-        //    for (int i = 0; i < fields.Length; i++)
-        //    {
-        //        PropertyInfo pi = GetPropertyInfo(pis, i);
-        //        if (pi != null)
-        //        {
-        //            pi.SetValue(result, fields[i]);
-        //        }
-        //    }
-        //    return result;
-        //}
-
 
         private static bool Contains(string alias, string title)
         {

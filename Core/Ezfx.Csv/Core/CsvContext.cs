@@ -1,6 +1,5 @@
-﻿//#define NETSTANDARD
-#undef NETSTANDARD
-using System;
+﻿//define NETSTANDARD
+//#undef NETSTANDARD
 using System.Data;
 using System.Collections.Generic;
 
@@ -16,9 +15,11 @@ namespace Ezfx.Csv
 {
     public static partial class CsvContext
     {
-
+#if NETSTANDARD
+        public const string DialogFilter = "CSV Files (*.csv)|*.csv";
+#else
         public const string DialogFilter = "CSV Files (*.csv)|*.csv| Access Files(*.mdb;*.accdb) |*.mdb;*.accdb| Excel Files (*.xls;*.xlsx)|*.xls;*.xlsx";
-
+#endif
         public static string FixField(string value, string delimiter)
         {
             if (value == null)
@@ -26,11 +27,11 @@ namespace Ezfx.Csv
                 return string.Empty;
             }
 
-            if (value.Contains(delimiter))
+            if (new List<string> { delimiter, "\r", "\n", "\"" }.Any(s => value.Contains(s)))
             {
-
-                return "\"" + value + "\"";
+                return "\"" + value.Replace("\"", "\"\"") + "\"";
             }
+
             return value;
         }
 
@@ -47,7 +48,6 @@ namespace Ezfx.Csv
         public static CsvRecord[] GetRecords(string content, string delimiter)
         {
             List<CsvRecord> records = new List<CsvRecord>();
-            //List<string> fields = new List<string>();
             content = content + "\n";
             var charArray = content.ToArray();
 
@@ -62,7 +62,7 @@ namespace Ezfx.Csv
             {
 
                 var currentChar = charArray[i];
-                var nextChar = i + 1 < charArray.Length? charArray[i + 1] : '\0';
+                var nextChar = i + 1 < charArray.Length ? charArray[i + 1] : '\0';
 
                 if (startRecord)
                 {
@@ -99,7 +99,7 @@ namespace Ezfx.Csv
                             {
                                 currentField += currentChar;
                                 AddField(currentRecord, ref currentField, ref concatenating);
-                                
+
                                 continue;
                             }
 
@@ -135,7 +135,7 @@ namespace Ezfx.Csv
                             continue;
                         }
 
-                        switch(currentChar)
+                        switch (currentChar)
                         {
                             case '\r':
                             case '\n':
@@ -161,8 +161,8 @@ namespace Ezfx.Csv
                     {
                         case '\r':
                         case '\n':
-                            var previousChar =i>0? charArray[i - 1]:'\0';
-                            if (previousChar==',')
+                            var previousChar = i > 0 ? charArray[i - 1] : '\0';
+                            if (previousChar == ',')
                             {
                                 currentRecord.Add(string.Empty);
                                 currentRecord = new CsvRecord();
@@ -196,7 +196,7 @@ namespace Ezfx.Csv
             //checked if the last record is empty
             var last = records.Last();
             var isEmpty = false;
-            if(last.Count==0)
+            if (last.Count == 0)
             {
                 isEmpty = true;
             }
@@ -220,7 +220,7 @@ namespace Ezfx.Csv
 
             return records.ToArray();
         }
-        
+
         private static void AddField(CsvRecord currentRecord, ref string currentField, ref bool concatenating)
         {
             currentRecord.Add(currentField.Trim());
@@ -228,16 +228,6 @@ namespace Ezfx.Csv
             concatenating = false;
         }
 
-        //private static void AddField(CsvRecord currentRecord, char nextChar, ref string currentField, ref bool concatenating, ref int i)
-        //{
-        //    currentRecord.Add(currentField);
-        //    currentField = string.Empty;
-        //    concatenating = false;
-        //    if (nextChar == ',')
-        //    {
-        //        i++;
-        //    }
-        //}
 
         public static string ToVariant(string name)
         {
