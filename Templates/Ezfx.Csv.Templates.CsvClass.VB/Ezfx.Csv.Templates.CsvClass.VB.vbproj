@@ -10,7 +10,7 @@
     <RootNamespace>Ezfx.Csv.Templates.CsvClass.VB</RootNamespace>
     <AssemblyName>Ezfx.Csv.Templates.CsvClass.VB</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>

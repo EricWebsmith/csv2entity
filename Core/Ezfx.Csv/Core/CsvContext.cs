@@ -1,6 +1,5 @@
-﻿//#define NETSTANDARD
-#undef NETSTANDARD
-using System;
+﻿//define NETSTANDARD
+//#undef NETSTANDARD
 using System.Data;
 using System.Collections.Generic;
 
@@ -49,7 +48,6 @@ namespace Ezfx.Csv
         public static CsvRecord[] GetRecords(string content, string delimiter)
         {
             List<CsvRecord> records = new List<CsvRecord>();
-            //List<string> fields = new List<string>();
             content = content + "\n";
             var charArray = content.ToArray();
 
@@ -230,16 +228,6 @@ namespace Ezfx.Csv
             concatenating = false;
         }
 
-        //private static void AddField(CsvRecord currentRecord, char nextChar, ref string currentField, ref bool concatenating, ref int i)
-        //{
-        //    currentRecord.Add(currentField);
-        //    currentField = string.Empty;
-        //    concatenating = false;
-        //    if (nextChar == ',')
-        //    {
-        //        i++;
-        //    }
-        //}
 
         public static string ToVariant(string name)
         {

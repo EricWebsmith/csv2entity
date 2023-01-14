@@ -1,25 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using EnvDTE;
+using Microsoft.VisualStudio.TemplateWizard;
+using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.TemplateWizard;
-using System;
-using System.Linq;
 
 namespace Ezfx.Csv.ItemWizards
 {
     public abstract class ClassWizard:IWizard
     {
-        public void BeforeOpeningFile(EnvDTE.ProjectItem projectItem)
+        public void BeforeOpeningFile(ProjectItem projectItem)
         {
 
         }
 
-        public void ProjectFinishedGenerating(EnvDTE.Project project)
+        public void ProjectFinishedGenerating(Project project)
         {
 
         }
 
-        public void ProjectItemFinishedGenerating(EnvDTE.ProjectItem projectItem)
+        public void ProjectItemFinishedGenerating(ProjectItem projectItem)
         {
 
         }
@@ -77,5 +76,6 @@ namespace Ezfx.Csv.ItemWizards
         {
             return _shouldAddProjectItem;
         }
+
     }
 }
