@@ -2,6 +2,10 @@
 obj/
 bin/
 Bin/
+debug/
+Debug/
+release/
+Release/
 *.user
 *.suo
 *.[Cc]ache
